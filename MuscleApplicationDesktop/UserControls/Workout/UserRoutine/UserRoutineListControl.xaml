@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="MuscleApplication.Desktop.UserRoutineListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+
+    <!--  List all the items  -->
+    <Border Background="{StaticResource ForegroundLightBrush}" CornerRadius="5">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--  Routines list  -->
+                    <RowDefinition Height="*" />
+                    <!--  Add routine button  -->
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--  Routines list  -->
+                <ItemsControl Grid.Row="0" ItemsSource="{Binding RoutinesList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:UserRoutineItemControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!--  Add new routine button  -->
+                <Button
+                    Grid.Row="1"
+                    MinHeight="20"
+                    VerticalAlignment="Bottom"
+                    Command="{Binding CreateRoutineCommand}"
+                    Content="ADD NEW ROUTINE"
+                    Style="{StaticResource AddButton}" />
+            </Grid>
+        </ScrollViewer>
+
+
+    </Border>
+
+    <!--  Binds to View Model  -->
+    <UserControl.DataContext>
+        <local:RoutineListViewModel />
+    </UserControl.DataContext>
+</UserControl>

@@ -1,0 +1,75 @@
+﻿<local:BasePage
+    x:Class="MuscleApplication.Desktop.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="Page"
+    Title="LoginPage"
+    d:DesignHeight="700"
+    d:DesignWidth="700"
+    x:TypeArguments="local:LoginViewModel"
+    ShowsNavigationUI="False"
+    mc:Ignorable="d">
+    <!--  Login main content white box  -->
+
+    <!--  ScrollViewer adding the scroll bars  -->
+    <Border>
+        <Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextBlock.TextAlignment="Center">
+                    <Border
+                        Width="200"
+                        Margin="50,50,50,0"
+                        Padding="15,50,15,15"
+                        Background="{StaticResource ForegroundLightBrush}"
+                        CornerRadius="10">
+                        <StackPanel>
+                            <!--  Sign up title  -->
+                            <TextBlock
+                                FontFamily="{StaticResource LatoRegular}"
+                                FontSize="{StaticResource FontSizeLarge}"
+                                Foreground="{StaticResource WordBlueBrush}"
+                                Text="Sign in" />
+
+                            <!--  Sign up subtext  -->
+                            <TextBlock
+                                Margin="0,0,0,20"
+                                FontFamily="{StaticResource LatoRegular}"
+                                Foreground="{StaticResource ForegroundMainBrush}"
+                                Text="Start working out today!" />
+                            <!--  Placeholder for email  -->
+                            <TextBox Tag="Email" Text="{Binding Email}" />
+                            <!--  Placeholder for password  -->
+                            <TextBox
+                                Margin="0,0,0,30"
+                                Tag="Password"
+                                
+                                Text="{Binding Password}" />
+                            <!--  Login Button  -->
+                            <Button
+                                HorizontalAlignment="Center"
+                                Command="{Binding LoginCommand}"
+                                CommandParameter="{Binding ElementName=Page}"
+                                Content="Login"
+                                Style="{StaticResource RegularButton}" />
+
+
+                        </StackPanel>
+
+                    </Border>
+                    <Button
+                        HorizontalAlignment="Center"
+                        Command="{Binding RegisterCommand}"
+                        Content="I want to register"
+                        Style="{StaticResource TextButton}" />
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</local:BasePage>

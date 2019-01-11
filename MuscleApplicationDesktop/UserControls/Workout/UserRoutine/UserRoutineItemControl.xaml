@@ -1,0 +1,108 @@
+﻿<UserControl
+    x:Class="MuscleApplication.Desktop.UserRoutineItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <!--  Background  -->
+                        <Border
+                            Name="background"
+                            Height="50"
+                            Margin="3"
+                            Background="{StaticResource BackgroundDodgerBlueBrush}"
+                            CornerRadius="5">
+                            <Border.InputBindings>
+                                <MouseBinding
+                                    Command="{Binding OpenRoutineCommand}"
+                                    CommandParameter="{Binding id}"
+                                    MouseAction="LeftClick" />
+                            </Border.InputBindings>
+                            <!--  Another border for the Hover Effect (rounded corners)  -->
+                            <Border
+                                x:Name="container"
+                                Background="Transparent"
+                                CornerRadius="5">
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <!--  Routine name  -->
+                                        <ColumnDefinition Width="Auto" />
+                                        <!--  Last used  -->
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--  Routine name  -->
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Padding="20,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource LatoBold}"
+                                        FontSize="{StaticResource FontSizeRegular}"
+                                        Foreground="{StaticResource ForegroundLightBrush}"
+                                        Text="{Binding routineName}" />
+                                    <!--  Last time used text  -->
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Padding="0,0,20,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource LatoBold}"
+                                        FontSize="{StaticResource FontSizeVerySmall}"
+                                        Foreground="{StaticResource ForegroundLightBrush}"
+                                        Text="{Binding lastUsed}" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="background" Property="Background" Value="{StaticResource WordOrangeBrush}" />
+                            </DataTrigger>
+                            <!--  Event for mouse entering the item  -->
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="container"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            To="{StaticResource NavBarBlue}"
+                                            Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <!--  Event for mouse leaving the item  -->
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="container"
+                                            Storyboard.TargetProperty="Background.Color"
+                                            To="Transparent"
+                                            Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <!--  Binds the routines  -->
+    <ContentControl DataContext="{Binding}" Style="{StaticResource ContentStyle}" />
+
+
+</UserControl>

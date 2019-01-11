@@ -1,0 +1,140 @@
+﻿<Window
+    x:Class="MuscleApplication.Desktop.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="AppWindow"
+    Width="800"
+    Height="500"
+    MinWidth="{Binding WindowMinimumWidth}"
+    MinHeight="{Binding WindowMinimumHeight}"
+    AllowsTransparency="True"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    Icon="Images/logo/MuscleLogo.png"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!--  Outer border with the dropshadow margin  -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                            <!--  Main Window outline  -->
+                            <Grid>
+                                <!--  Opacity mask for corners on grid  -->
+                                <Border
+                                    x:Name="Container"
+                                    Background="{StaticResource BackgroundLightBrush}"
+                                    CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
+                                <!--  Window border and drop shadow  -->
+                                <Border Background="White" CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}">
+                                    <Border.Effect>
+                                        <DropShadowEffect Opacity="0.2" ShadowDepth="0" />
+                                    </Border.Effect>
+
+                                </Border>
+                                <!--  Main window content  -->
+                                <Grid>
+                                    <!--  Corner clipping  -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+
+                                    <Grid.RowDefinitions>
+                                        <!--  Title bar  -->
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=40}" />
+                                        <!--  Window Content  -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <!--  Title bar  -->
+                                    <Grid Grid.Column="0" Panel.ZIndex="1">
+                                        <Grid.ColumnDefinitions>
+                                            <!--  Icon  -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!--  Title  -->
+                                            <ColumnDefinition Width="*" />
+                                            <!--  Windows buttons  -->
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <!--  Icon  -->
+                                        <Button
+                                            Command="{Binding MenuCommand}"
+                                            Style="{StaticResource SystemIconButton}"
+                                            UseLayoutRounding="True">
+                                            <Image
+                                                RenderOptions.BitmapScalingMode="HighQuality"
+                                                SnapsToDevicePixels="False"
+                                                Source="Images/logo/MuscleLogo.png" />
+                                        </Button>
+
+                                        <!--  Title  -->
+                                        <Viewbox
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="3"
+                                            Margin="5">
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeRegular}">
+                                                    <Run Foreground="{StaticResource WordBlueBrush}" Text="M" /><Run Foreground="{StaticResource WordOrangeBrush}" Text="U" /><Run Foreground="{StaticResource WordGreenBrush}" Text="S" /><Run Foreground="{StaticResource WordBlueBrush}" Text="C" /><Run Foreground="{StaticResource WordOrangeBrush}" Text="L" /><Run Foreground="{StaticResource WordGreenBrush}" Text="E" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Viewbox>
+
+                                        <!--  Window buttons  -->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                            <Button
+                                                Command="{Binding MinimizeCommand}"
+                                                Content="_"
+                                                Style="{DynamicResource WindowControlButton}" />
+                                            <Button
+                                                Command="{Binding MaximizeCommand}"
+                                                Content="[ ]"
+                                                Style="{DynamicResource WindowControlButton}" />
+                                            <Button
+                                                Command="{Binding CloseCommand}"
+                                                Content="X"
+                                                Style="{DynamicResource WindowCloseButton}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <!--  Page Content  -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+
+
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="{Binding TitleHeight}"
+            CornerRadius="0"
+            GlassFrameThickness="0"
+            ResizeBorderThickness="{Binding ResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+    <Border Background="{StaticResource BackgroundDodgerBlueBrush}">
+        <Grid>
+            <!--  Background image  -->
+            <Grid.Background>
+                <ImageBrush
+                    TileMode="Tile"
+                    Viewport="0 0 400 400"
+                    ViewportUnits="Absolute" />
+            </Grid.Background>
+            <Frame
+                x:Name="MainFrame"
+                Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}"
+                NavigationUIVisibility="Hidden" />
+        </Grid>
+    </Border>
+</Window>

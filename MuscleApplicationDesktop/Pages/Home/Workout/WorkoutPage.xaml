@@ -1,0 +1,88 @@
+﻿<local:BasePage
+    x:Class="MuscleApplication.Desktop.WorkoutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="Page"
+    Title="WorkoutPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:TypeArguments="local:WorkoutViewModel"
+    mc:Ignorable="d">
+    <!--  Border added for the overlay effect  -->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--  Routine List  -->
+            <ColumnDefinition Width="*" />
+            <!--  Exercises List  -->
+            <ColumnDefinition Width="*" />
+            <!--  Exercise Description  -->
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+
+        <!--  Routine list  -->
+        <Border
+            Grid.Column="0"
+            Margin="7"
+            Background="Transparent">
+            <local:UserRoutineListControl />
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="0"
+                    Direction="-120"
+                    RenderingBias="Quality"
+                    ShadowDepth="0.5"
+                    Color="{StaticResource BackgroundLight}" />
+            </Border.Effect>
+        </Border>
+
+        <!--  Exercise list  -->
+        <Border
+            Grid.Column="1"
+            Margin="7"
+            Background="Transparent"
+            Visibility="{Binding IsExercisePageVisible, Converter={local:BooleanToVisibilityConverter}}">
+            <local:ExerciseListControl />
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="0"
+                    Direction="-120"
+                    RenderingBias="Quality"
+                    ShadowDepth="0.5"
+                    Color="{StaticResource BackgroundLight}" />
+            </Border.Effect>
+        </Border>
+        <!--  Overlay effect  -->
+        <Border
+            Grid.ColumnSpan="3"
+            Width="{Binding ActualWidth, ElementName=Page}"
+            Height="{Binding ActualHeight, ElementName=Page}"
+            Background="Black"
+            Opacity="0.40"
+            Visibility="{Binding IsOverlayEffectUsed, Converter={local:BooleanToVisibilityConverter}}">
+            <Border.InputBindings>
+                <MouseBinding
+                    Command="{Binding IsOverlayEffectUsedCommand}"
+                    CommandParameter="False"
+                    MouseAction="LeftClick" />
+            </Border.InputBindings>
+        </Border>
+        <Border
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="{Binding IsOverlayEffectUsed, Converter={local:BooleanToVisibilityConverter}}">
+
+            <local:AvailableExerciseListControl />
+        </Border>
+
+    </Grid>
+
+    <local:BasePage.DataContext>
+        <local:WorkoutViewModel />
+    </local:BasePage.DataContext>
+</local:BasePage>

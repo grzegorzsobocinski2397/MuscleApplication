@@ -1,0 +1,105 @@
+﻿<UserControl
+    x:Class="MuscleApplication.Desktop.AvailableExerciseListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="350"
+    mc:Ignorable="d">
+    <Border
+        MinWidth="350"
+        MinHeight="450"
+        Background="{StaticResource ForegroundLightBrush}"
+        BorderBrush="{StaticResource BackgroundDodgerBlueBrush}"
+        BorderThickness="3"
+        CornerRadius="5">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--  Create routine title  -->
+                <RowDefinition Height="Auto" />
+                <!--  Routine name textbox  -->
+                <RowDefinition Height="Auto" />
+                <!--  Find exercises title  -->
+                <RowDefinition Height="Auto" />
+                <!--  Search textbox  -->
+                <RowDefinition Height="Auto" />
+                <!--  List of exercises  -->
+                <RowDefinition Height="*" />
+                <!--  Create button  -->
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+
+            <!--  Create routine title  -->
+            <TextBlock
+                Grid.Row="0"
+                Margin="0,20,0,0"
+                Style="{StaticResource TitleTextBlock}"
+                Text="Name your routine!" />
+
+            <!--  Routine name textbox  -->
+            <TextBox
+                Grid.Row="1"
+                Margin="5,20,5,0"
+                FontSize="{StaticResource FontSizeSmall}"
+                Tag="  Please type in your routine name  "
+                Text="{Binding RoutineName, Mode=TwoWay}"
+                TextAlignment="Center" />
+
+            <!--  Find exercises title  -->
+            <TextBlock
+                Grid.Row="2"
+                Margin="0,20,0,0"
+                Style="{StaticResource TitleTextBlock}"
+                Text="Now add some exercises!" />
+
+
+            <!--  List of exercises  -->
+
+
+            <!--  Textbox for searching  -->
+            <TextBox
+                Grid.Row="3"
+                Margin="5,20,5,5"
+                FontSize="{StaticResource FontSizeSmall}"
+                Tag="  Search for exercise type or name  "
+                Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                TextAlignment="Center" />
+
+            <!--  Exercises list  -->
+            <Border
+                Grid.Row="4"
+                MaxWidth="260"
+                MaxHeight="150"
+                Background="{StaticResource ForegroundLightBrush}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+                    <ItemsControl ItemsSource="{Binding ExercisesList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:AvailableExerciseItemControl />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <!--  Create button  -->
+            <Button
+                Grid.Row="5"
+                Command="{Binding CreateRoutineCommand}"
+                CommandParameter="{Binding RoutineName}"
+                Content="CREATE"
+                Style="{StaticResource AddButton}" />
+        </Grid>
+    </Border>
+
+
+
+    <UserControl.DataContext>
+        <local:AvailableExerciseListViewModel />
+    </UserControl.DataContext>
+</UserControl>

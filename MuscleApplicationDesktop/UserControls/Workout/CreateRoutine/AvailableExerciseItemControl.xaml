@@ -1,0 +1,128 @@
+﻿<UserControl
+    x:Class="MuscleApplication.Desktop.AvailableExerciseItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="40"
+    d:DesignWidth="220"
+    mc:Ignorable="d">
+
+
+    <UserControl.Resources>
+        <Style x:Key="ContentControl" TargetType="{x:Type ContentControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <!--  Background  -->
+                        <Border MinWidth="220" Background="{StaticResource ForegroundLightBrush}">
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <!--  Check box  -->
+                                    <ColumnDefinition Width="*" />
+                                    <!--  Exercise name and types  -->
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <!--  Upper line  -->
+                                    <RowDefinition Height="1" />
+                                    <!--  Content  -->
+                                    <RowDefinition Height="*" />
+                                    <!--  Lower line  -->
+                                    <RowDefinition Height="1" />
+
+                                </Grid.RowDefinitions>
+
+                                <!--  Upper line  -->
+                                <Rectangle
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Height="1">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Offset="0.0" Color="{StaticResource ForegroundLight}" />
+                                            <GradientStop Offset="0.5" Color="{StaticResource RectangleGradientLineBlue}" />
+                                            <GradientStop Offset="1.1" Color="{StaticResource ForegroundLight}" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <!--  Check box for selection  -->
+                                <CheckBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,0,10,0"
+                                    IsChecked="{Binding IsSelected}"
+                                    Command="{Binding IsSelectedCommand}"
+                                    CommandParameter="{Binding id}"
+                                    Style="{StaticResource CheckBoxRegular}" />
+
+                                <!--  Exercise name and types  -->
+                                <Grid
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Margin="0,0,0,1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <!--  Exercise name  -->
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Left"
+                                        
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource NavBarBlueBrush}"
+                                        Style="{StaticResource StatTextblock}"
+                                        Text="{Binding ExerciseName, FallbackValue=Deadlift}" />
+                                    <!--  Exercise types  -->
+                                    <StackPanel
+                                        Grid.Row="1"
+                                        HorizontalAlignment="left"
+                                        Orientation="Horizontal">
+
+                                        <!--  First exercise type  -->
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Foreground="Gray"
+                                            Style="{StaticResource StatTextblock}"
+                                            Text="{Binding ExerciseType, FallbackValue=Biceps}" />
+                                        <!--  Second exercise type  -->
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Foreground="CornflowerBlue"
+                                            Style="{StaticResource StatTextblock}"
+                                            Text="{Binding ExerciseType2, FallbackValue=Back}" />
+
+                                    </StackPanel>
+                                </Grid>
+                                <!--  Lower line  -->
+                                <Rectangle
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Height="1">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Offset="0.0" Color="{StaticResource ForegroundLight}" />
+                                            <GradientStop Offset="0.5" Color="{StaticResource RectangleGradientLineBlue}" />
+                                            <GradientStop Offset="1.1" Color="{StaticResource ForegroundLight}" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <ContentControl DataContext="{Binding}" Style="{StaticResource ContentControl}" />
+</UserControl>

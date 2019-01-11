@@ -1,0 +1,32 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!--  Basic fonts in this application  -->
+    <FontFamily x:Key="LatoRegular">pack://application;,,,,/Fonts/#Lato Regular</FontFamily>
+    <FontFamily x:Key="LatoThin">pack://application;,,,,/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="LatoBold">pack://application;,,,,/Fonts/#Lato Bold</FontFamily>
+    <FontFamily x:Key="FontAwesome">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+
+    <!--  This overrides every font in this application to be LatoRegular  -->
+    <Style x:Key="BaseStyle" TargetType="{x:Type Control}">
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+    </Style>
+
+
+    <!--  Font sizes  -->
+    <system:Double x:Key="FontSizeLarge">40</system:Double>
+    <system:Double x:Key="FontSizeSemiLarge">30</system:Double>
+    <system:Double x:Key="FontSizeRegular">20</system:Double>
+    <system:Double x:Key="FontSizeSmall">15</system:Double>
+    <system:Double x:Key="FontSizeVerySmall">13</system:Double>
+
+    <!--  Font Awesome Icons  -->
+    <system:String x:Key="FontAwesomeUser">&#xf007;</system:String>
+    <system:String x:Key="FontAwesomeCog">&#xf013;</system:String>
+    <system:String x:Key="FontAwesomeCalendar">&#xf073;</system:String>
+    <system:String x:Key="FontAwesomeStart">&#xf04b;</system:String>
+    <system:String x:Key="FontAwesomeList">&#xf022;</system:String>
+</ResourceDictionary>

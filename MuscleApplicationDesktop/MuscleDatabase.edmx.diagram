@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="361abc33fa24455bbb6518aa024c6a95" Name="Diagram1">
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Exercises" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.RoutineExercises" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Routines" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Sets" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Users" Width="1.5" PointX="0.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.UserWorkouts" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_ExerciseId" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetsExerciseId" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineId" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineUser" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_UserWorkoutRoutineID" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetsUserWorkoutId" ManuallyRouted="false" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_UserWorkoutUserID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

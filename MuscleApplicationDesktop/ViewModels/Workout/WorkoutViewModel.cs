@@ -21,6 +21,14 @@ namespace MuscleApplication.Desktop
         /// </summary>
         public bool IsOverlayEffectUsed { get; set; } = false;
         /// <summary>
+        /// True if user wants to add new routine
+        /// </summary>
+        public bool IsCreateExercisePageVisible { get; set; } = false;
+        /// <summary>
+        /// True if user wants to add new exercise
+        /// </summary>
+        public bool IsCreateRoutinePageVisible { get; set; } = false;
+         /// <summary>
         /// When user clicks the overlay effect background then he leaves the create routine window
         /// </summary>
         public ICommand IsOverlayEffectUsedCommand { get; set; }
@@ -32,6 +40,8 @@ namespace MuscleApplication.Desktop
             MessengerInstance.Register<PropertyChangedMessage<string>>(this, ChangeExercisePage);
             // Listens for a message to display create routine page
             MessengerInstance.Register<PropertyChangedMessage<string>>(this, OpenCreateRoutinePage);
+            // Listens for a message to display create exercise page
+            MessengerInstance.Register<PropertyChangedMessage<string>>(this, OpenCreateExercisePage);
             // Creates commands
             IsOverlayEffectUsedCommand = new RelayCommand(() => ChangeOverlayEffect());
 
@@ -47,6 +57,8 @@ namespace MuscleApplication.Desktop
         {
             // Hides the create routine window
             IsOverlayEffectUsed = false;
+            IsCreateExercisePageVisible = false;
+            IsCreateRoutinePageVisible = false;
             // Sends the message to the List View Model to clear the lists
             MessengerInstance.Send(new NotificationMessage("ClearExercises"));
         }
@@ -77,6 +89,17 @@ namespace MuscleApplication.Desktop
             {
                 // Sets the overlay effect on 
                 IsOverlayEffectUsed = true;
+                IsCreateRoutinePageVisible = true;
+            }
+        }
+        public void OpenCreateExercisePage(PropertyChangedMessage<string> obj)
+        {
+            // Continues if the propertyName matches
+            if (obj.PropertyName == "OpenCreateExercise")
+            {
+                // Sets the overlay effect on 
+                IsOverlayEffectUsed = true;
+                IsCreateExercisePageVisible = true;
             }
         }
         #endregion

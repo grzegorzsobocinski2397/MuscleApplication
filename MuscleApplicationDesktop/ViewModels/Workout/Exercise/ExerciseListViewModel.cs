@@ -19,6 +19,10 @@ namespace MuscleApplication.Desktop
         
         #endregion
         #region Commands
+        /// <summary>
+        /// Makes the <see cref="CreateExerciseControl"/> visible
+        /// </summary>
+        public ICommand CreateExerciseCommand { get; set; }
         #endregion
         #region Constructor
         /// <summary>
@@ -30,6 +34,8 @@ namespace MuscleApplication.Desktop
             ExercisesList = new ObservableCollection<ExerciseListItemViewModel>();
             // Registers a messenger instance to populate exercises list
             MessengerInstance.Register<PropertyChangedMessage<string>>(this, GetExercises);
+            // Creates commands
+            CreateExerciseCommand = new RelayCommand(() => MessageOpenCreateExercisePage());
         }
 
 
@@ -85,7 +91,13 @@ namespace MuscleApplication.Desktop
 
         }
         #endregion
-       
+        #region Private Methods
+        private void MessageOpenCreateExercisePage()
+        {
+            // Sends the message 
+            MessengerInstance.Send(new PropertyChangedMessage<string>("", "True", "OpenCreateExercise"));
+        }
+        #endregion
 
     }
 

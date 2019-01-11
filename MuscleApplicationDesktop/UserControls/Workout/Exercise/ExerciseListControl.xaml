@@ -39,6 +39,7 @@
                     Grid.Row="1"
                     MinHeight="20"
                     VerticalAlignment="Bottom"
+                    Command="{Binding CreateExerciseCommand}"
                     Content="ADD NEW EXERCISE"
                     Style="{StaticResource AddButton}" />
             </Grid>

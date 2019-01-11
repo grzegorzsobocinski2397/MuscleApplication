@@ -25,7 +25,7 @@ namespace MuscleApplication.Desktop
             // Register a messenger instance to deselect other routines
             MessengerInstance.Register<PropertyChangedMessage<string>>(this, DeselectRoutines);
             // Creates commands
-            CreateRoutineCommand = new RelayCommand(() => MessageoOpenCreateRoutinePage());
+            CreateRoutineCommand = new RelayCommand(() => MessageOpenCreateRoutinePage());
         }
         #endregion
 
@@ -98,7 +98,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// Sends the message to the workout view model to display the Open Create Routine Page
         /// </summary>
-        private void MessageoOpenCreateRoutinePage()
+        private void MessageOpenCreateRoutinePage()
         {
             // Sends the message 
             MessengerInstance.Send(new PropertyChangedMessage<string>("", "True", "OpenCreateRoutine"));

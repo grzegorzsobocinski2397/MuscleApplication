@@ -161,6 +161,9 @@
     <Compile Include="UserControls\Profile\ProfileMainControl.xaml.cs">
       <DependentUpon>ProfileMainControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Workout\CreateExercise\CreateExerciseControl.xaml.cs">
+      <DependentUpon>CreateExerciseControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Workout\CreateRoutine\AvailableExerciseItemControl.xaml.cs">
       <DependentUpon>AvailableExerciseItemControl.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
+    <Compile Include="ViewModels\Workout\CreateExercise\CreateExerciseViewModel.cs" />
     <Compile Include="ViewModels\Workout\CreateRoutine\AvailableExerciseListItemViewModel.cs" />
     <Compile Include="ViewModels\Workout\CreateRoutine\AvailableExerciseListViewModel.cs" />
     <Compile Include="ViewModels\Workout\Exercise\ExerciseListItemViewModel.cs" />
@@ -258,6 +262,10 @@
     <Page Include="UserControls\Profile\ProfileMainControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Workout\CreateExercise\CreateExerciseControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Workout\CreateRoutine\AvailableExerciseItemControl.xaml">
       <SubType>Designer</SubType>

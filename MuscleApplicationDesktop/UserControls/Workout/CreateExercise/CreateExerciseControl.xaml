@@ -1,0 +1,86 @@
+﻿<UserControl
+    x:Class="MuscleApplication.Desktop.CreateExerciseControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MuscleApplication.Desktop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Border
+        MinHeight="340"
+        Width="320"
+        Background="{StaticResource ForegroundLightBrush}"
+        
+        BorderBrush="{StaticResource BackgroundDodgerBlueBrush}"
+        BorderThickness="3"
+        CornerRadius="5">
+
+        <Grid HorizontalAlignment="Center" Margin="20">
+            <Grid.RowDefinitions>
+                <!--  Name your exercise title  -->
+                <RowDefinition Height="Auto" />
+                <!--  Exercise name textbox  -->
+                <RowDefinition Height="*" />
+                <!--  Name your exercise types  -->
+                <RowDefinition Height="Auto" />
+                <!--  Exercise types textbox  -->
+                <RowDefinition Height="*" />
+                <!--  Create button  -->
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+
+            <!--  Create exercise title  -->
+            <TextBlock
+                Grid.Row="0"
+                Margin="0,10,0,0"
+                VerticalAlignment="Top"
+                Style="{StaticResource TitleTextBlock}"
+                Text="Name your exercise!" />
+
+            <!--  Exercise name textbox  -->
+            <TextBox
+                Grid.Row="1"
+                Margin="5,0,5,0"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource FontSizeSmall}"
+                Tag="  Please type in your exercise name  "
+                Text="{Binding ExerciseName, Mode=TwoWay}"
+                TextAlignment="Center" />
+            <!--  Name your exercise types  -->
+            <TextBlock
+                Grid.Row="2"
+                Margin="0,10,0,0"
+                VerticalAlignment="Top"
+                Style="{StaticResource TitleTextBlock}"
+                Text="Which body part does this exercise hit"
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
+
+            <!--  Exercise type textbox  -->
+            <TextBox
+                Grid.Row="3"
+                Margin="5,0,5,0"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource FontSizeSmall}"
+                Tag="  Please type in your exercise type  "
+                Text="{Binding ExerciseType, Mode=TwoWay}"
+                TextAlignment="Center" />
+
+            <!--  Create button  -->
+            <Button
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                Command="{Binding CreateExerciseCommand}"
+                CommandParameter="{Binding Exercise}"
+                Content="CREATE"
+                Style="{StaticResource AddButton}" />
+        </Grid>
+    </Border>
+
+
+
+    <UserControl.DataContext>
+        <local:CreateExerciseViewModel />
+    </UserControl.DataContext>
+</UserControl>

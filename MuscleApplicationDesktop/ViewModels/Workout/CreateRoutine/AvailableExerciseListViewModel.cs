@@ -206,45 +206,31 @@ namespace MuscleApplication.Desktop
             var newRoutine = new Routines
             {
                 routineName = routineName as string,
-                userId = "41790E2E-081B-4D65-B54A-C16F78D39398",
-                id = Guid.NewGuid().ToString(),
+                userId = CurrentUser.id,
             };
+            
+
+            // Save routine id string for adding exercises later
+            var routineIdString = newRoutine.id;
+
             // Adds new routine to the database
             db.Routines.Add(newRoutine);
-
-
-            // Saves changes to the database
-            try
-            {
-                db.SaveChanges();
-            }
-            catch(DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
-            /*
-            // Looks for that routine in the database
-            var routineId = db.Routines.Where(r => r.routineName == routineName && r.userId == newRoutine.userId).FirstOrDefault();
-
+            
+           
+            
             // Adds exercises selected by the user to the database
-            foreach(var exercise in SelectedExercisesList.ToList())
+            foreach(var selectedExercise in SelectedExercisesList.ToList())
             {
-                db.RoutineExercises.SqlQuery("INSERT INTO [RoutineExercises] (exerciseId, routineId)" +
-                    "VALUES ({0}, {1})", exercise.id, routineId.id);
+                var exercise = new RoutineExercises {
+                    routineId = routineIdString,
+                    exerciseId = selectedExercise.id
+                };
+                
+                db.RoutineExercises.Add(exercise);
             }
 
-            // Saves changes to the database
-            await db.SaveChangesAsync();*/
+            // Save changes to the database
+            SaveDbChanges();
         }
         #endregion
     }

@@ -11,23 +11,24 @@ namespace MuscleApplication.Desktop
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Routines
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Routines()
         {
-            this.id = "";
+            this.id = Guid.NewGuid().ToString();
+            this.createdAt = DateTimeOffset.Now;
             this.RoutineExercises = new HashSet<RoutineExercises>();
             this.UserWorkouts = new HashSet<UserWorkouts>();
         }
-    
+
         public string id { get; set; }
         public System.DateTimeOffset createdAt { get; set; }
         public string routineName { get; set; }
         public string userId { get; set; }
         public Nullable<System.DateTime> lastUsed { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoutineExercises> RoutineExercises { get; set; }
         public virtual Users Users { get; set; }

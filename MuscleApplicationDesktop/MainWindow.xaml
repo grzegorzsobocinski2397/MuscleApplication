@@ -13,6 +13,7 @@
     AllowsTransparency="True"
     DataContext="{Binding Main, Source={StaticResource Locator}}"
     Icon="Images/logo/MuscleLogo.png"
+    TextOptions.TextFormattingMode="Display"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

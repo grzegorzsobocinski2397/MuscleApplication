@@ -1,6 +1,8 @@
 using GalaSoft.MvvmLight;
 using System;
 using System.ComponentModel;
+using System.Data.Entity.Validation;
+using System.Linq;
 using System.Windows.Input;
 
 namespace MuscleApplication.Desktop
@@ -24,13 +26,15 @@ namespace MuscleApplication.Desktop
             {
                 Data = Guid.NewGuid();
             });
+
+            CurrentUser = db.Users.Where(u => u.id == "41790E2E-081B-4D65-B54A-C16F78D39398").FirstOrDefault();
         }
         #endregion
         #region Public Properties
         /// <summary>
         /// The current logged user in the application
         /// </summary>
-        public Users CurrentUser { get; set; }
+        public Users CurrentUser { get; set; } 
         /// <summary>
         /// The event that is fired when any child property changes its value
         /// </summary>
@@ -39,9 +43,9 @@ namespace MuscleApplication.Desktop
         /// Connection to the database
         /// </summary>
         public MuscleApplication_dbEntities db { get; set; }
-        
+
         public ICommand LoadDataCommand { get; private set; }
-        
+
         public Guid Data
         {
             get
@@ -64,6 +68,31 @@ namespace MuscleApplication.Desktop
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+        #region Public Methods
+        public void SaveDbChanges()
+        {
+            // Saves changes to the database
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
         #endregion
     }

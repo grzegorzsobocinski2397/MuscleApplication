@@ -17,6 +17,9 @@ namespace MuscleApplication.Desktop
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Exercises()
         {
+
+            this.id = Guid.NewGuid().ToString();
+            this.createdAt = DateTimeOffset.Now;
             this.RoutineExercises = new HashSet<RoutineExercises>();
             this.Sets = new HashSet<Sets>();
         }

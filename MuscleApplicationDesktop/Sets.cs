@@ -14,6 +14,12 @@ namespace MuscleApplication.Desktop
     
     public partial class Sets
     {
+        public Sets()
+        {
+
+            this.id = Guid.NewGuid().ToString();
+            this.createdAt = DateTimeOffset.Now;
+        }
         public string id { get; set; }
         public System.DateTimeOffset createdAt { get; set; }
         public Nullable<byte> repetition { get; set; }

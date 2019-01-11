@@ -14,6 +14,11 @@ namespace MuscleApplication.Desktop
     
     public partial class RoutineExercises
     {
+        public RoutineExercises()
+        {
+            this.id = Guid.NewGuid().ToString();
+            this.createdAt = DateTimeOffset.Now;
+        }
         public string id { get; set; }
         public System.DateTimeOffset createdAt { get; set; }
         public string exerciseId { get; set; }

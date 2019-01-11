@@ -25,6 +25,7 @@ namespace MuscleApplication.Desktop
             InitializeComponent();
             // Allows data binding 
             DataContext = new WindowViewModel(this);
+            // Another test for the GIT
         }
     }
 }

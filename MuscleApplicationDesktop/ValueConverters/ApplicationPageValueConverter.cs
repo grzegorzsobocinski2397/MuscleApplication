@@ -27,6 +27,8 @@ namespace MuscleApplication.Desktop
                     return new ProfilePage();
                 case ApplicationPage.Workout:
                     return new WorkoutPage();
+                case ApplicationPage.Register:
+                    return new RegisterPage();
                 default:
                     Debugger.Break();
                     return null;

@@ -53,8 +53,10 @@ namespace MuscleApplication.Desktop
         {
             // Creates new commands
             LoginCommand = new RelayParameterCommand(async (parameter) => await LoginAsync(parameter));
-            RegisterCommand = new RelayCommand(() =>
-                ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Homepage));
+            /*RegisterCommand = new RelayCommand(() =>
+                ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Homepage));*/
+            RegisterCommand = new RelayCommand(() => ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Register));
+
         }
 
         #endregion

@@ -1,18 +1,16 @@
 ﻿<local:BasePage
-    x:Class="MuscleApplication.Desktop.LoginPage"
+    x:Class="MuscleApplication.Desktop.RegisterPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MuscleApplication.Desktop"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Name="Page"
-    Title="LoginPage"
+    Title="RegisterPage"
     d:DesignHeight="700"
     d:DesignWidth="700"
-    x:TypeArguments="local:LoginViewModel"
+    x:TypeArguments="local:RegisterViewModel"
     ShowsNavigationUI="False"
     mc:Ignorable="d">
-    <!--  Login main content white box  -->
 
     <!--  ScrollViewer adding the scroll bars  -->
     <Border>
@@ -34,7 +32,7 @@
                                 FontFamily="{StaticResource LatoRegular}"
                                 FontSize="{StaticResource FontSizeLarge}"
                                 Foreground="{StaticResource WordBlueBrush}"
-                                Text="Sign in" />
+                                Text="Sign up" />
 
                             <!--  Sign up subtext  -->
                             <TextBlock
@@ -43,19 +41,19 @@
                                 Foreground="{StaticResource ForegroundMainBrush}"
                                 Text="Start working out today!" />
                             <!--  Placeholder for email  -->
-                            <TextBox Tag="Email" Text="{Binding Email}" />
+                            <TextBox Tag="Email" Text="{Binding Email, Mode=TwoWay}" />
                             <!--  Placeholder for password  -->
+                            <TextBox Tag="Password" Text="{Binding Password, Mode=TwoWay}" />
+                            <!--  Password confirmation  -->
                             <TextBox
                                 Margin="0,0,0,30"
-                                Tag="Password"
-                                
-                                Text="{Binding Password}" />
+                                Tag="Confirm password"
+                                Text="{Binding ConfirmPassword, Mode=TwoWay}" />
                             <!--  Login Button  -->
                             <Button
                                 HorizontalAlignment="Center"
-                                Command="{Binding LoginCommand}"
-                                CommandParameter="{Binding ElementName=Page}"
-                                Content="Login"
+                                Command="{Binding RegisterCommand}"
+                                Content="Register"
                                 Style="{StaticResource RegularButton}" />
 
 
@@ -64,8 +62,8 @@
                     </Border>
                     <Button
                         HorizontalAlignment="Center"
-                        Command="{Binding RegisterCommand}"
-                        Content="I want to register"
+                        Command="{Binding ReturnCommand}"
+                        Content="I already have an account"
                         Style="{StaticResource TextButton}" />
                 </StackPanel>
 

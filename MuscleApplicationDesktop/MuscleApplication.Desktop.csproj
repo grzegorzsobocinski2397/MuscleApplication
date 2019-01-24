@@ -143,6 +143,9 @@
     <Compile Include="Pages\Home\Workout\WorkoutPage.xaml.cs">
       <DependentUpon>WorkoutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -198,6 +201,7 @@
     <Compile Include="ViewModels\Base\RelayParameterCommand.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="ViewModels\Workout\CreateExercise\CreateExerciseViewModel.cs" />
     <Compile Include="ViewModels\Workout\CreateRoutine\AvailableExerciseListItemViewModel.cs" />
@@ -233,6 +237,10 @@
     <Page Include="Pages\Home\Workout\WorkoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>

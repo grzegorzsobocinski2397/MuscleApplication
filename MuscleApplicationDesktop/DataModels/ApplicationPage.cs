@@ -22,5 +22,9 @@
         /// Workout page with exercises
         /// </summary>
         Workout,
+        /// <summary>
+        /// Register page
+        /// </summary>
+        Register,
     }
 }

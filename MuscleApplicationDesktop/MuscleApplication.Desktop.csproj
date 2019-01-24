@@ -158,8 +158,11 @@
     <Compile Include="UserControls\MainSideBar\MainSidebarUserControl.xaml.cs">
       <DependentUpon>MainSidebarUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Profile\ProfileMainControl.xaml.cs">
-      <DependentUpon>ProfileMainControl.xaml</DependentUpon>
+    <Compile Include="UserControls\Profile\FavouriteExercisesProgressControl.xaml.cs">
+      <DependentUpon>FavouriteExercisesProgressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Profile\UserInformationControl.xaml.cs">
+      <DependentUpon>UserInformationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Workout\CreateExercise\CreateExerciseControl.xaml.cs">
       <DependentUpon>CreateExerciseControl.xaml</DependentUpon>
@@ -259,7 +262,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Profile\ProfileMainControl.xaml">
+    <Page Include="UserControls\Profile\FavouriteExercisesProgressControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Profile\UserInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,6 +11,34 @@
     mc:Ignorable="d">
 
     <Grid>
-        <CheckBox Style="{DynamicResource CheckBoxRegular}" />
+        <Grid.ColumnDefinitions>
+            <!--  User information and favourite exercises progress  -->
+            <ColumnDefinition Width="*" />
+            <!--  Last workouts recorded  -->
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <!--  User information and favourite exercises progress  -->
+        <Grid Grid.Column="0" Margin="0,20,0,20">
+            <Grid.RowDefinitions>
+                <!--  User information  -->
+                <RowDefinition Height="*" />
+                <!--  Favourite exercises progress  -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  User information  -->
+            <Border Grid.Row="0">
+                <local:UserInformationControl />
+            </Border>
+
+            <!--  Favourite exercises progres  -->
+            <Border Grid.Row="1" Margin="0,10">
+                <local:FavouriteExercisesProgressControl />
+            </Border>
+
+        </Grid>
+
     </Grid>
 </local:BasePage>

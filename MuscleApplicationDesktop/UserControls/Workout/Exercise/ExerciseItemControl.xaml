@@ -37,7 +37,7 @@
                                             FontFamily="{StaticResource LatoBold}"
                                             FontSize="{StaticResource FontSizeVerySmall}"
                                             Foreground="{StaticResource ForegroundLightBrush}"
-                                            Text="{Binding ExerciseType}" /> 
+                                            Text="{Binding ExerciseType}" />
                                         <TextBlock
                                             Margin="10,0,0,0"
                                             FontFamily="{StaticResource LatoBold}"

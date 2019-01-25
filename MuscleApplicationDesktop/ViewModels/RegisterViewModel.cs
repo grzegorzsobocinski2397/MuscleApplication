@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
 
@@ -30,13 +31,20 @@ namespace MuscleApplication.Desktop
         /// If any error appears, user can see it 
         /// </summary>
         public string ErrorText { get; set; } = string.Empty;
-
+        /// <summary>
+        /// What is being displayed on the register button
+        /// </summary>
+        public string ButtonContent { get; set; } = "Register";
+        /// <summary>
+        /// User sees that everything went ok 
+        /// </summary>
+        public bool IsContinueTextVisible { get; set; } = false;
         #endregion
         #region Commands
         /// <summary>
         /// Adds the user credentials to the database 
         /// </summary>
-        public ICommand RegisterCommand { get; set; }
+        public ICommand ButtonCommand { get; set; }
         /// <summary>
         /// Returns the user to the login page
         /// </summary>
@@ -50,10 +58,21 @@ namespace MuscleApplication.Desktop
         {
             // Creates the commands
             ReturnCommand = new RelayCommand(() => ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Login));
-            RegisterCommand = new RelayCommand(() => RegisterUser());
+            ButtonCommand = new RelayCommand(() => ButtonOptions());
         }
         #endregion
         #region Private Methods
+        /// <summary>
+        /// Two choices for the button (Register) or (Continue)
+        /// </summary>
+        private void ButtonOptions()
+        {
+            // If the button displays "Register" go to RegisterUser
+            if (IsContinueTextVisible)
+                ReturnCommand.Execute(null);
+            else
+                RegisterUser();
+        }
         /// <summary>
         /// Registers the user
         /// </summary>
@@ -91,17 +110,23 @@ namespace MuscleApplication.Desktop
 
                             // Saves changes made to the database
                             SaveDbChanges();
+
+                            // Shows the user that everything went ok 
+                            IsContinueTextVisible = true;
+
+                            // Changes the button text
+                            ButtonContent = "Continue";
                         }
                         else
                             ErrorText = "You couldn't be born that day!";
                     }
-                    catch
-                    {
-
-                    }
-                    finally
+                    catch(System.FormatException fe)
                     {
                         ErrorText = "Please type in proper date, DD/MM/YYYY";
+                    }
+                   catch(SqlException se)
+                    {
+                        ErrorText = "This email is already used";
                     }
 
                 }

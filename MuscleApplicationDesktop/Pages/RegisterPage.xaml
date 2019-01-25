@@ -47,20 +47,26 @@
                             <!--  Password confirmation  -->
                             <TextBox Tag="Confirm password" Text="{Binding ConfirmPassword, Mode=TwoWay}" />
                             <!--  Date of birth  -->
-                            <TextBox
-                                Tag="Date of birth (12/12/1992)"
-                                Text="{Binding DateOfBirth, Mode=TwoWay}" />
-                            <TextBlock Text="{Binding ErrorText}"
-                                       Foreground="{StaticResource WordRedBrush}"
-                                       FontFamily="{StaticResource LatoThin}"
-                                       TextWrapping="WrapWithOverflow"
-                                       FontSize="{StaticResource FontSizeRegular}"
-                                       Margin="0,0,0,30"/>
+                            <TextBox Tag="Date of birth (12/12/1992)" Text="{Binding DateOfBirth, Mode=TwoWay}" />
+                            <TextBlock
+                                FontFamily="{StaticResource LatoThin}"
+                                FontSize="{StaticResource FontSizeRegular}"
+                                Foreground="{StaticResource WordRedBrush}"
+                                Text="{Binding ErrorText}"
+                                TextWrapping="WrapWithOverflow" />
+                            <TextBlock
+                                Margin="0,-20,0,30"
+                                FontFamily="{StaticResource LatoThin}"
+                                FontSize="{StaticResource FontSizeRegular}"
+                                Foreground="{StaticResource WordGreenBrush}"
+                                Text="Everything went perfect! Click the button bellow to begin!"
+                                TextWrapping="WrapWithOverflow"
+                                Visibility="{Binding IsContinueTextVisible, Converter={local:BooleanToVisibilityConverter}}" />
                             <!--  Register Button  -->
                             <Button
                                 HorizontalAlignment="Center"
-                                Command="{Binding RegisterCommand}"
-                                Content="Register"
+                                Command="{Binding ButtonCommand}"
+                                Content="{Binding ButtonContent}"
                                 Style="{StaticResource RegularButton}" />
 
 

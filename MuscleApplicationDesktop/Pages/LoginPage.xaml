@@ -48,7 +48,6 @@
                             <TextBox
                                 Margin="0,0,0,30"
                                 Tag="Password"
-                                
                                 Text="{Binding Password}" />
                             <!--  Login Button  -->
                             <Button

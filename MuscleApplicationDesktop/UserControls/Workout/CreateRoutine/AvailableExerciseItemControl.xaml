@@ -91,7 +91,7 @@
                                             Style="{StaticResource StatTextblock}"
                                             Text="{Binding Type, FallbackValue=Biceps}" />
                                         <!--  Second exercise type  -->
-                                        
+
 
                                     </StackPanel>
                                 </Grid>

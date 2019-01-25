@@ -29,20 +29,21 @@
                                         FontFamily="{StaticResource LatoBold}"
                                         FontSize="{StaticResource FontSizeSmall}"
                                         Foreground="{StaticResource ForegroundLightBrush}"
-                                        Text="{Binding ExerciseName}" />
+                                        Text="{Binding Name}" />
                                     <!--  Exercise Type  -->
                                     <StackPanel Orientation="Horizontal">
+                                        <!--
                                         <TextBlock
                                             FontFamily="{StaticResource LatoBold}"
                                             FontSize="{StaticResource FontSizeVerySmall}"
                                             Foreground="{StaticResource ForegroundLightBrush}"
-                                            Text="{Binding ExerciseType}" />
+                                            Text="{Binding ExerciseType}" /> 
                                         <TextBlock
                                             Margin="10,0,0,0"
                                             FontFamily="{StaticResource LatoBold}"
                                             FontSize="{StaticResource FontSizeVerySmall}"
                                             Foreground="{StaticResource ForegroundLightBrush}"
-                                            Text="{Binding ExerciseType2}" />
+                                            Text="{Binding ExerciseType2}" />-->
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

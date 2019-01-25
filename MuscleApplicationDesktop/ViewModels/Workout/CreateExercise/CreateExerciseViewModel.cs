@@ -11,7 +11,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// User's exercise name
         /// </summary>
-        private string Name;
+        private string name;
         /// <summary>
         /// User's exercise
         /// </summary>
@@ -22,7 +22,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// User's exercise name
         /// </summary>
-        public string ExerciseName
+        public string Name
         {
             get { return Name; }
             set

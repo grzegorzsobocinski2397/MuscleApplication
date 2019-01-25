@@ -23,7 +23,7 @@
                             <Border.InputBindings>
                                 <MouseBinding
                                     Command="{Binding OpenRoutineCommand}"
-                                    CommandParameter="{Binding id}"
+                                    CommandParameter="{Binding Id}"
                                     MouseAction="LeftClick" />
                             </Border.InputBindings>
                             <!--  Another border for the Hover Effect (rounded corners)  -->
@@ -48,7 +48,7 @@
                                         FontFamily="{StaticResource LatoBold}"
                                         FontSize="{StaticResource FontSizeRegular}"
                                         Foreground="{StaticResource ForegroundLightBrush}"
-                                        Text="{Binding routineName}" />
+                                        Text="{Binding Name}" />
                                     <!--  Last time used text  -->
                                     <TextBlock
                                         Grid.Column="1"
@@ -58,7 +58,7 @@
                                         FontFamily="{StaticResource LatoBold}"
                                         FontSize="{StaticResource FontSizeVerySmall}"
                                         Foreground="{StaticResource ForegroundLightBrush}"
-                                        Text="{Binding lastUsed}" />
+                                        Text="{Binding LastUsed}" />
                                 </Grid>
                             </Border>
                         </Border>

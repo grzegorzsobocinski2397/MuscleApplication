@@ -55,7 +55,7 @@
                                     Grid.Column="1"
                                     Margin="0,0,10,0"
                                     Command="{Binding IsSelectedCommand}"
-                                    CommandParameter="{Binding id}"
+                                    CommandParameter="{Binding Id}"
                                     IsChecked="{Binding IsSelected}"
                                     Style="{StaticResource CheckBoxRegular}" />
 
@@ -76,7 +76,7 @@
                                         VerticalAlignment="Center"
                                         Foreground="{StaticResource NavBarBlueBrush}"
                                         Style="{StaticResource StatTextblock}"
-                                        Text="{Binding ExerciseName, FallbackValue=Deadlift}" />
+                                        Text="{Binding Name, FallbackValue=Deadlift}" />
                                     <!--  Exercise types  -->
                                     <StackPanel
                                         Grid.Row="1"
@@ -89,14 +89,9 @@
                                             VerticalAlignment="Center"
                                             Foreground="Gray"
                                             Style="{StaticResource StatTextblock}"
-                                            Text="{Binding ExerciseType, FallbackValue=Biceps}" />
+                                            Text="{Binding Type, FallbackValue=Biceps}" />
                                         <!--  Second exercise type  -->
-                                        <TextBlock
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Foreground="CornflowerBlue"
-                                            Style="{StaticResource StatTextblock}"
-                                            Text="{Binding ExerciseType2, FallbackValue=Back}" />
+                                        
 
                                     </StackPanel>
                                 </Grid>

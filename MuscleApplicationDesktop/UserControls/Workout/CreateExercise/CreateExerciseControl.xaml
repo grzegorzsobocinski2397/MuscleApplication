@@ -44,7 +44,7 @@
                 VerticalAlignment="Center"
                 FontSize="{StaticResource FontSizeSmall}"
                 Tag="  Please type in your exercise name  "
-                Text="{Binding ExerciseName, Mode=TwoWay}"
+                Text="{Binding Name, Mode=TwoWay}"
                 TextAlignment="Center" />
             <!--  Name your exercise types  -->
             <TextBlock
@@ -63,7 +63,6 @@
                 VerticalAlignment="Center"
                 FontSize="{StaticResource FontSizeSmall}"
                 Tag="  Please type in your exercise type  "
-                Text="{Binding ExerciseType, Mode=TwoWay}"
                 TextAlignment="Center" />
 
             <!--  Create button  -->

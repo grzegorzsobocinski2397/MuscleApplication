@@ -46,7 +46,7 @@
                 Margin="5,20,5,0"
                 FontSize="{StaticResource FontSizeSmall}"
                 Tag="  Please type in your routine name  "
-                Text="{Binding RoutineName, Mode=TwoWay}"
+                Text="{Binding Name, Mode=TwoWay}"
                 TextAlignment="Center" />
 
             <!--  Find exercises title  -->
@@ -91,7 +91,7 @@
             <Button
                 Grid.Row="5"
                 Command="{Binding CreateRoutineCommand}"
-                CommandParameter="{Binding RoutineName}"
+                CommandParameter="{Binding Name}"
                 Content="CREATE"
                 Style="{StaticResource AddButton}" />
         </Grid>

@@ -1,86 +1,36 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MuscleApplication.Desktop
 {
     public class RegisterViewModel : BaseViewModel
     {
-        #region Private Members
-        /// <summary>
-        /// User's email typed in on the register page
-        /// </summary>
-        private string email;
-        /// <summary>
-        /// User's password typed in on the register page
-        /// </summary>
-        private string password;
-        /// <summary>
-        /// What the user typed on the register page in the "Confirm Password" placeholder
-        /// </summary>
-        private string confirmPassword;
-        /// <summary>
-        /// User's credentials
-        /// </summary>
-        private User user;
 
-        #endregion
         #region Public Properties
 
         /// <summary>
         /// User's email typed in on the register page
         /// </summary>
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                // Creates new user based on the input provided by the user
-                user = new User
-                {
-                    Email = Email,
-                    Password = Password
+        public string Email { get; set; }
 
-                };
-            }
-        }
         /// <summary>
         /// User's password typed in on the register page
         /// </summary>
-        public string Password
-        {
-            get { return password; }
-            set
-            {
-                password = value;
-                // Creates new user based on the input provided by the user
-                user = new User
-                {
-                    Email = Email,
-                    Password = Password
-
-                };
-            }
-        }
+        public string Password { get; set; }
         /// <summary>
         /// What the user typed on the register page in the "Confirm Password" placeholder
         /// </summary>
-        public string ConfirmPassword
-        {
-            get { return confirmPassword; }
-            set
-            {
-                confirmPassword = value;
-            }
-        }
+        public string ConfirmPassword { get; set; }
         /// <summary>
-        /// User's credentials
+        /// User's birthday
         /// </summary>
-        public User User
-        {
-            get { return user; }
-            set { user = value; }
-        }
+        public string DateOfBirth { get; set; }
+        /// <summary>
+        /// If any error appears, user can see it 
+        /// </summary>
+        public string ErrorText { get; set; } = string.Empty;
+
         #endregion
         #region Commands
         /// <summary>
@@ -110,16 +60,56 @@ namespace MuscleApplication.Desktop
         /// <param name="parameter">User credentials</param>
         private void RegisterUser()
         {
+            // Cleans the error text
+            ErrorText = string.Empty;
+
             // Checks if the user has written all the data required
-            if (User.Password != null && User.Email != null && ConfirmPassword != null)
+            if (Password != null && Email != null && ConfirmPassword != null)
             {
                 // Continue if the password and confirm password textbox matches 
-                if (User.Password == ConfirmPassword)
+                if (Password == ConfirmPassword)
                 {
-                    db.Users.Add(User);
-                    SaveDbChanges();
+                    try
+                    {
+                        // Parse the string into datetime
+                        var birthdayDate = DateTime.Parse(DateOfBirth);
+
+                        // Checks if the date of birth is correct
+                        if (birthdayDate > DateTime.Parse("01/01/1900") && birthdayDate < DateTime.Now)
+                        {
+                            // Creates new user
+                            var user = new User
+                            {
+                                Password = this.Password,
+                                Email = this.Email,
+                                DateOfBirth = birthdayDate,
+
+                            };
+
+                            // Adds the user to the database
+                            db.Users.Add(user);
+
+                            // Saves changes made to the database
+                            SaveDbChanges();
+                        }
+                        else
+                            ErrorText = "You couldn't be born that day!";
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        ErrorText = "Please type in proper date, DD/MM/YYYY";
+                    }
+
                 }
+                else
+                    ErrorText = "Passwords don't match!";
             }
+            else
+                ErrorText = "You left some boxes empty!";
         }
         #endregion
     }

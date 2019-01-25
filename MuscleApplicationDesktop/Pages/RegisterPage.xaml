@@ -45,11 +45,18 @@
                             <!--  Placeholder for password  -->
                             <TextBox Tag="Password" Text="{Binding Password, Mode=TwoWay}" />
                             <!--  Password confirmation  -->
+                            <TextBox Tag="Confirm password" Text="{Binding ConfirmPassword, Mode=TwoWay}" />
+                            <!--  Date of birth  -->
                             <TextBox
-                                Margin="0,0,0,30"
-                                Tag="Confirm password"
-                                Text="{Binding ConfirmPassword, Mode=TwoWay}" />
-                            <!--  Login Button  -->
+                                Tag="Date of birth (12/12/1992)"
+                                Text="{Binding DateOfBirth, Mode=TwoWay}" />
+                            <TextBlock Text="{Binding ErrorText}"
+                                       Foreground="{StaticResource WordRedBrush}"
+                                       FontFamily="{StaticResource LatoThin}"
+                                       TextWrapping="WrapWithOverflow"
+                                       FontSize="{StaticResource FontSizeRegular}"
+                                       Margin="0,0,0,30"/>
+                            <!--  Register Button  -->
                             <Button
                                 HorizontalAlignment="Center"
                                 Command="{Binding RegisterCommand}"

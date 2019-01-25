@@ -11,15 +11,11 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// User's exercise name
         /// </summary>
-        private string exerciseName;
-        /// <summary>
-        /// User's exercise type
-        /// </summary>
-        private string exerciseType;
+        private string Name;
         /// <summary>
         /// User's exercise
         /// </summary>
-        private Exercises exercise;
+        private Exercise exercise;
         #endregion
         #region Public Properties
 
@@ -28,47 +24,29 @@ namespace MuscleApplication.Desktop
         /// </summary>
         public string ExerciseName
         {
-            get { return exerciseName; }
+            get { return Name; }
             set
             {
-                exerciseName = value;
-                Exercise = new Exercises
+                Name = value;
+                Exercise = new Exercise
                 {
-                    ExerciseName = value,
-                    ExerciseType = exerciseType
+                    Name = value,
                 };
 
             }
         }
         /// <summary>
-        /// User's exercise type
-        /// </summary>
-        public string ExerciseType
-        {
-            get { return exerciseType; }
-            set
-            {
-                exerciseType = value;
-                Exercise = new Exercises
-                {
-                    ExerciseName = exerciseName,
-                    ExerciseType = value
-                };
-            }
-        }
-        /// <summary>
         /// User's exercise
         /// </summary>
-        public Exercises Exercise
+        public Exercise Exercise
         {
             get { return exercise; }
             set
             {
                 exercise = value;
-                exercise = new Exercises
+                exercise = new Exercise
                 {
-                    ExerciseName = ExerciseName,
-                    ExerciseType = ExerciseType
+                    Name = Name,
                 };
             }
         }
@@ -93,7 +71,7 @@ namespace MuscleApplication.Desktop
         private void CreateExercise(object parameter)
         {
             // Casts parameter into as exercise
-            var exercise = parameter as Exercises;
+            var exercise = parameter as Exercise;
 
             // If exercise is not null then...
             if(exercise != null)

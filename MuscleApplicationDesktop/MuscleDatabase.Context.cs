@@ -25,11 +25,12 @@ namespace MuscleApplication.Desktop
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Exercises> Exercises { get; set; }
-        public virtual DbSet<RoutineExercises> RoutineExercises { get; set; }
-        public virtual DbSet<Routines> Routines { get; set; }
-        public virtual DbSet<Sets> Sets { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<UserWorkouts> UserWorkouts { get; set; }
+        public virtual DbSet<Exercise> Exercises { get; set; }
+        public virtual DbSet<ExerciseType> ExerciseTypes { get; set; }
+        public virtual DbSet<RoutineExercise> RoutineExercises { get; set; }
+        public virtual DbSet<Routine> Routines { get; set; }
+        public virtual DbSet<Set> Sets { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Workout> Workouts { get; set; }
     }
 }

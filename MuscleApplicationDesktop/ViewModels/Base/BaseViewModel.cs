@@ -26,15 +26,14 @@ namespace MuscleApplication.Desktop
             {
                 Data = Guid.NewGuid();
             });
-
-            CurrentUser = db.Users.Where(u => u.id == "41790E2E-081B-4D65-B54A-C16F78D39398").FirstOrDefault();
+            
         }
         #endregion
         #region Public Properties
         /// <summary>
         /// The current logged user in the application
         /// </summary>
-        public Users CurrentUser { get; set; } 
+        public User CurrentUser { get; set; } 
         /// <summary>
         /// The event that is fired when any child property changes its value
         /// </summary>

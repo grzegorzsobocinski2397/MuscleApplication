@@ -13,19 +13,11 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// Exercise id 
         /// </summary>
-        public string id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Exercise name
         /// </summary>
-        public string ExerciseName { get; set; }
-        /// <summary>
-        /// Exercise type
-        /// </summary>
-        public string ExerciseType { get; set; }
-        /// <summary>
-        /// Secondary exercise type
-        /// </summary>
-        public string ExerciseType2 { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// True if the user selected the checkbox
         /// </summary>
@@ -52,14 +44,12 @@ namespace MuscleApplication.Desktop
             var exerciseId = parameter as string;
 
             // Looks into the database for the exercise
-            var exercise = db.Exercises.Where(e => e.id == exerciseId).FirstOrDefault();
+            var exercise = db.Exercises.Where(e => e.Id == exerciseId).FirstOrDefault();
 
             // Creates new List Item
             var availableExercise = new AvailableExerciseListItemViewModel {
-                id = exercise.id,
-                ExerciseName = exercise.ExerciseName,
-                ExerciseType = exercise.ExerciseType,
-                ExerciseType2 = exercise.ExerciseType2,
+                Id = exercise.Id,
+                Name = exercise.Name,
                 IsSelected = true,
             };
             

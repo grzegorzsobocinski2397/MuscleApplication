@@ -21,7 +21,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// User's credentials
         /// </summary>
-        private Users user;
+        private User user;
 
         #endregion
         #region Public Properties
@@ -36,10 +36,10 @@ namespace MuscleApplication.Desktop
             {
                 email = value;
                 // Creates new user based on the input provided by the user
-                user = new Users
+                user = new User
                 {
-                    email = Email,
-                    password = Password
+                    Email = Email,
+                    Password = Password
 
                 };
             }
@@ -54,10 +54,10 @@ namespace MuscleApplication.Desktop
             {
                 password = value;
                 // Creates new user based on the input provided by the user
-                user = new Users
+                user = new User
                 {
-                    email = Email,
-                    password = Password
+                    Email = Email,
+                    Password = Password
 
                 };
             }
@@ -76,7 +76,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// User's credentials
         /// </summary>
-        public Users User
+        public User User
         {
             get { return user; }
             set { user = value; }
@@ -111,10 +111,10 @@ namespace MuscleApplication.Desktop
         private void RegisterUser()
         {
             // Checks if the user has written all the data required
-            if (User.password != null && User.email != null && ConfirmPassword != null)
+            if (User.Password != null && User.Email != null && ConfirmPassword != null)
             {
                 // Continue if the password and confirm password textbox matches 
-                if (User.password == ConfirmPassword)
+                if (User.Password == ConfirmPassword)
                 {
                     db.Users.Add(User);
                     SaveDbChanges();

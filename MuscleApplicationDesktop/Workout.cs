@@ -12,27 +12,25 @@ namespace MuscleApplication.Desktop
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercises
+    public partial class Workout
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Exercises()
+        public Workout()
         {
-
-            this.id = Guid.NewGuid().ToString();
-            this.createdAt = DateTimeOffset.Now;
-            this.RoutineExercises = new HashSet<RoutineExercises>();
-            this.Sets = new HashSet<Sets>();
+            Id = Guid.NewGuid().ToString();
+            CreatedAt = DateTime.Now;
+            this.Sets = new HashSet<Set>();
         }
     
-        public string id { get; set; }
-        public System.DateTimeOffset createdAt { get; set; }
-        public string ExerciseName { get; set; }
-        public string ExerciseType { get; set; }
-        public string ExerciseType2 { get; set; }
+        public string Id { get; set; }
+        public string RoutineId { get; set; }
+        public string UserId { get; set; }
+        public System.DateTime CreatedAt { get; set; }
+        public Nullable<System.DateTime> EndedAt { get; set; }
     
+        public virtual Routine Routines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoutineExercises> RoutineExercises { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sets> Sets { get; set; }
+        public virtual ICollection<Set> Sets { get; set; }
+        public virtual User Users { get; set; }
     }
 }

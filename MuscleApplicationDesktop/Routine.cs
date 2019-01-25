@@ -11,28 +11,28 @@ namespace MuscleApplication.Desktop
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Routines
+    
+    public partial class Routine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Routines()
+        public Routine()
         {
-            this.id = Guid.NewGuid().ToString();
-            this.createdAt = DateTimeOffset.Now;
-            this.RoutineExercises = new HashSet<RoutineExercises>();
-            this.UserWorkouts = new HashSet<UserWorkouts>();
+            Id = Guid.NewGuid().ToString();
+            CreatedAt = DateTime.Now;
+            this.RoutineExercises = new HashSet<RoutineExercise>();
+            this.Workouts = new HashSet<Workout>();
         }
-
-        public string id { get; set; }
-        public System.DateTimeOffset createdAt { get; set; }
-        public string routineName { get; set; }
-        public string userId { get; set; }
-        public Nullable<System.DateTime> lastUsed { get; set; }
-
+    
+        public string Id { get; set; }
+        public System.DateTime CreatedAt { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> LastUsed { get; set; }
+        public string UserId { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoutineExercises> RoutineExercises { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<RoutineExercise> RoutineExercises { get; set; }
+        public virtual User Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserWorkouts> UserWorkouts { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
     }
 }

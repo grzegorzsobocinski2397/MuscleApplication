@@ -12,19 +12,18 @@ namespace MuscleApplication.Desktop
     using System;
     using System.Collections.Generic;
     
-    public partial class RoutineExercises
+    public partial class RoutineExercise
     {
-        public RoutineExercises()
+        public RoutineExercise()
         {
-            this.id = Guid.NewGuid().ToString();
-            this.createdAt = DateTimeOffset.Now;
+            Id = Guid.NewGuid().ToString();
+
         }
-        public string id { get; set; }
-        public System.DateTimeOffset createdAt { get; set; }
-        public string exerciseId { get; set; }
-        public string routineId { get; set; }
+        public string Id { get; set; }
+        public string ExerciseId { get; set; }
+        public string RoutineId { get; set; }
     
-        public virtual Exercises Exercises { get; set; }
-        public virtual Routines Routines { get; set; }
+        public virtual Exercise Exercises { get; set; }
+        public virtual Routine Routines { get; set; }
     }
 }

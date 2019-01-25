@@ -12,29 +12,28 @@ namespace MuscleApplication.Desktop
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public User()
         {
-
-            this.id = Guid.NewGuid().ToString();
-            this.createdAt = DateTimeOffset.Now;
-            this.Routines = new HashSet<Routines>();
-            this.UserWorkouts = new HashSet<UserWorkouts>();
+            Id = Guid.NewGuid().ToString();
+            CreatedAt = DateTime.Now; 
+            this.Routines = new HashSet<Routine>();
+            this.Workouts = new HashSet<Workout>();
         }
     
-        public string id { get; set; }
-        public System.DateTimeOffset createdAt { get; set; }
-        public Nullable<bool> deleted { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public Nullable<double> weight { get; set; }
-        public Nullable<double> height { get; set; }
+        public string Id { get; set; }
+        public System.DateTime CreatedAt { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Nullable<decimal> Weight { get; set; }
+        public Nullable<decimal> Height { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Routines> Routines { get; set; }
+        public virtual ICollection<Routine> Routines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserWorkouts> UserWorkouts { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
     }
 }

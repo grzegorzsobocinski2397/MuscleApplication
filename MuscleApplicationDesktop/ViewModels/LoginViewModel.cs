@@ -89,14 +89,14 @@ namespace MuscleApplication.Desktop
         public bool LoginCredentialsCheckAsync(string email, string password)
         {
             // Looks for the given email address in the database
-            var user = db.Users.Where(u => u.email == email).FirstOrDefault();
+            var user = db.Users.Where(u => u.Email == email).FirstOrDefault();
 
             // If there is none, return false
             if (user != null)
             {
 
                 // Selects user of this application as a given user
-                if (user.password == password)
+                if (user.Password == password)
                 {
 
                     CurrentUser = user;

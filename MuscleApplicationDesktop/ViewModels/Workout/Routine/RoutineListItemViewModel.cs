@@ -14,23 +14,19 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// Id of the routine
         /// </summary>
-        public string id { get; set; }
-        /// <summary>
-        /// Time when the routine was created
-        /// </summary>
-        public DateTimeOffset createdAt { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// Routine name
         /// </summary>
-        public string routineName { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// User that created this routine
         /// </summary>
-        public string userId { get; set; }
+        public string UserId { get; set; }
         /// <summary>
         /// When was this routine last used
         /// </summary>
-        public DateTime? lastUsed { get; set; }
+        public DateTime? LastUsed { get; set; }
         /// <summary>
         /// True if selected
         /// </summary>

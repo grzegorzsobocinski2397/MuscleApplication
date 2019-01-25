@@ -7,388 +7,426 @@
     <Schema Namespace="MuscleApplication_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Exercises">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="ExerciseName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ExerciseType" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ExerciseType2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExerciseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExerciseId" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RoutineExercises">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="exerciseId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="routineId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExerciseId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RoutineId" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Routines">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="routineName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="userId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="lastUsed" Type="smalldatetime" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedAt" Type="date" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUsed" Type="smalldatetime" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Sets">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="repetition" Type="tinyint" />
-          <Property Name="weight" Type="int" />
-          <Property Name="userWorkoutId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="exerciseId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Repetitions" Type="smallint" />
+          <Property Name="Weight" Type="smallint" />
+          <Property Name="WorkoutId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExerciseId" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="deleted" Type="bit" />
-          <Property Name="email" Type="nvarchar" MaxLength="100" />
-          <Property Name="password" Type="nvarchar" MaxLength="100" />
-          <Property Name="weight" Type="float" />
-          <Property Name="height" Type="float" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" Nullable="false" />
+          <Property Name="Email" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="60" Nullable="false" />
+          <Property Name="Weight" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Height" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserWorkouts">
+        <EntityType Name="Workouts">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="createdAt" Type="datetimeoffset" Precision="3" Nullable="false" />
-          <Property Name="routineId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="userId" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="routineName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="endedAt" Type="smalldatetime" />
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RoutineId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" Nullable="false" />
+          <Property Name="EndedAt" Type="smalldatetime" />
         </EntityType>
-        <Association Name="FK_ExerciseId">
+        <Association Name="FK_RoutineExerciseOnExercise">
           <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
           <End Role="RoutineExercises" Type="Self.RoutineExercises" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exercises">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RoutineExercises">
-              <PropertyRef Name="exerciseId" />
+              <PropertyRef Name="ExerciseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RoutineId">
+        <Association Name="FK_RoutineExerciseOnRoutine">
           <End Role="Routines" Type="Self.Routines" Multiplicity="1" />
           <End Role="RoutineExercises" Type="Self.RoutineExercises" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Routines">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RoutineExercises">
-              <PropertyRef Name="routineId" />
+              <PropertyRef Name="RoutineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RoutineUser">
+        <Association Name="FK_RoutineOnUser">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Routines" Type="Self.Routines" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Routines">
-              <PropertyRef Name="userId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SetsExerciseId">
+        <Association Name="FK_SetOnExercise">
           <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
           <End Role="Sets" Type="Self.Sets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exercises">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Sets">
-              <PropertyRef Name="exerciseId" />
+              <PropertyRef Name="ExerciseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SetsUserWorkoutId">
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="1" />
+        <Association Name="FK_SetOnWorkout">
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="1" />
           <End Role="Sets" Type="Self.Sets" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserWorkouts">
-              <PropertyRef Name="id" />
+            <Principal Role="Workouts">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Sets">
-              <PropertyRef Name="userWorkoutId" />
+              <PropertyRef Name="WorkoutId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserWorkoutRoutineID">
+        <Association Name="FK_TypeExercise">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="0..1" />
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExerciseTypes">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutOnRoutine">
           <End Role="Routines" Type="Self.Routines" Multiplicity="1" />
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="*" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Routines">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserWorkouts">
-              <PropertyRef Name="routineId" />
+            <Dependent Role="Workouts">
+              <PropertyRef Name="RoutineId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserWorkoutUserID">
+        <Association Name="FK_WorkoutOnUser">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="*" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserWorkouts">
-              <PropertyRef Name="userId" />
+            <Dependent Role="Workouts">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MuscleApplication_dbModelStoreContainer">
           <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoutineExercises" EntityType="Self.RoutineExercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Routines" EntityType="Self.Routines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sets" EntityType="Self.Sets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserWorkouts" EntityType="Self.UserWorkouts" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ExerciseId" Association="Self.FK_ExerciseId">
+          <EntitySet Name="Workouts" EntityType="Self.Workouts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RoutineExerciseOnExercise" Association="Self.FK_RoutineExerciseOnExercise">
             <End Role="Exercises" EntitySet="Exercises" />
             <End Role="RoutineExercises" EntitySet="RoutineExercises" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoutineId" Association="Self.FK_RoutineId">
+          <AssociationSet Name="FK_RoutineExerciseOnRoutine" Association="Self.FK_RoutineExerciseOnRoutine">
             <End Role="Routines" EntitySet="Routines" />
             <End Role="RoutineExercises" EntitySet="RoutineExercises" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoutineUser" Association="Self.FK_RoutineUser">
+          <AssociationSet Name="FK_RoutineOnUser" Association="Self.FK_RoutineOnUser">
             <End Role="Users" EntitySet="Users" />
             <End Role="Routines" EntitySet="Routines" />
           </AssociationSet>
-          <AssociationSet Name="FK_SetsExerciseId" Association="Self.FK_SetsExerciseId">
+          <AssociationSet Name="FK_SetOnExercise" Association="Self.FK_SetOnExercise">
             <End Role="Exercises" EntitySet="Exercises" />
             <End Role="Sets" EntitySet="Sets" />
           </AssociationSet>
-          <AssociationSet Name="FK_SetsUserWorkoutId" Association="Self.FK_SetsUserWorkoutId">
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+          <AssociationSet Name="FK_SetOnWorkout" Association="Self.FK_SetOnWorkout">
+            <End Role="Workouts" EntitySet="Workouts" />
             <End Role="Sets" EntitySet="Sets" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWorkoutRoutineID" Association="Self.FK_UserWorkoutRoutineID">
-            <End Role="Routines" EntitySet="Routines" />
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+          <AssociationSet Name="FK_TypeExercise" Association="Self.FK_TypeExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWorkoutUserID" Association="Self.FK_UserWorkoutUserID">
+          <AssociationSet Name="FK_WorkoutOnRoutine" Association="Self.FK_WorkoutOnRoutine">
+            <End Role="Routines" EntitySet="Routines" />
+            <End Role="Workouts" EntitySet="Workouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutOnUser" Association="Self.FK_WorkoutOnUser">
             <End Role="Users" EntitySet="Users" />
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+            <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MuscleApplication_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Exercises">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="ExerciseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ExerciseType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="RoutineExercises" Relationship="Self.FK_ExerciseId" FromRole="Exercises" ToRole="RoutineExercises" />
-          <NavigationProperty Name="Sets" Relationship="Self.FK_SetsExerciseId" FromRole="Exercises" ToRole="Sets" />
-          <Property Name="ExerciseType2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="RoutineExercises">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="exerciseId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="routineId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Exercises" Relationship="Self.FK_ExerciseId" FromRole="RoutineExercises" ToRole="Exercises" />
-          <NavigationProperty Name="Routines" Relationship="Self.FK_RoutineId" FromRole="RoutineExercises" ToRole="Routines" />
-        </EntityType>
-        <EntityType Name="Routines">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="routineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="userId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lastUsed" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RoutineExercises" Relationship="Self.FK_RoutineId" FromRole="Routines" ToRole="RoutineExercises" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_RoutineUser" FromRole="Routines" ToRole="Users" />
-          <NavigationProperty Name="UserWorkouts" Relationship="Self.FK_UserWorkoutRoutineID" FromRole="Routines" ToRole="UserWorkouts" />
-        </EntityType>
-        <EntityType Name="Sets">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="repetition" Type="Byte" />
-          <Property Name="weight" Type="Int32" />
-          <Property Name="userWorkoutId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="exerciseId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Exercises" Relationship="Self.FK_SetsExerciseId" FromRole="Sets" ToRole="Exercises" />
-          <NavigationProperty Name="UserWorkouts" Relationship="Self.FK_SetsUserWorkoutId" FromRole="Sets" ToRole="UserWorkouts" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="deleted" Type="Boolean" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="weight" Type="Double" />
-          <Property Name="height" Type="Double" />
-          <NavigationProperty Name="Routines" Relationship="Self.FK_RoutineUser" FromRole="Users" ToRole="Routines" />
-          <NavigationProperty Name="UserWorkouts" Relationship="Self.FK_UserWorkoutUserID" FromRole="Users" ToRole="UserWorkouts" />
-        </EntityType>
-        <EntityType Name="UserWorkouts">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="createdAt" Type="DateTimeOffset" Nullable="false" Precision="3" />
-          <Property Name="routineId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="userId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="routineName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="endedAt" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Routines" Relationship="Self.FK_UserWorkoutRoutineID" FromRole="UserWorkouts" ToRole="Routines" />
-          <NavigationProperty Name="Sets" Relationship="Self.FK_SetsUserWorkoutId" FromRole="UserWorkouts" ToRole="Sets" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UserWorkoutUserID" FromRole="UserWorkouts" ToRole="Users" />
-        </EntityType>
-        <Association Name="FK_ExerciseId">
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="RoutineExercises" Type="Self.RoutineExercises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exercises">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoutineExercises">
-              <PropertyRef Name="exerciseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SetsExerciseId">
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="Sets" Type="Self.Sets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exercises">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Sets">
-              <PropertyRef Name="exerciseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoutineId">
-          <End Role="Routines" Type="Self.Routines" Multiplicity="1" />
-          <End Role="RoutineExercises" Type="Self.RoutineExercises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Routines">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoutineExercises">
-              <PropertyRef Name="routineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoutineUser">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Routines" Type="Self.Routines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Routines">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserWorkoutRoutineID">
-          <End Role="Routines" Type="Self.Routines" Multiplicity="1" />
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Routines">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UserWorkouts">
-              <PropertyRef Name="routineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SetsUserWorkoutId">
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="1" />
-          <End Role="Sets" Type="Self.Sets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserWorkouts">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Sets">
-              <PropertyRef Name="userWorkoutId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserWorkoutUserID">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserWorkouts" Type="Self.UserWorkouts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UserWorkouts">
-              <PropertyRef Name="userId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MuscleApplication_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Exercises" EntityType="Self.Exercises" />
-          <EntitySet Name="RoutineExercises" EntityType="Self.RoutineExercises" />
-          <EntitySet Name="Routines" EntityType="Self.Routines" />
-          <EntitySet Name="Sets" EntityType="Self.Sets" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="UserWorkouts" EntityType="Self.UserWorkouts" />
-          <AssociationSet Name="FK_ExerciseId" Association="Self.FK_ExerciseId">
+          <EntitySet Name="Exercises" EntityType="MuscleApplication_dbModel.Exercise" />
+          <EntitySet Name="ExerciseTypes" EntityType="MuscleApplication_dbModel.ExerciseType" />
+          <EntitySet Name="RoutineExercises" EntityType="MuscleApplication_dbModel.RoutineExercise" />
+          <EntitySet Name="Routines" EntityType="MuscleApplication_dbModel.Routine" />
+          <EntitySet Name="Sets" EntityType="MuscleApplication_dbModel.Set" />
+          <EntitySet Name="Users" EntityType="MuscleApplication_dbModel.User" />
+          <EntitySet Name="Workouts" EntityType="MuscleApplication_dbModel.Workout" />
+          <AssociationSet Name="FK_RoutineExerciseOnExercise" Association="MuscleApplication_dbModel.FK_RoutineExerciseOnExercise">
             <End Role="Exercises" EntitySet="Exercises" />
             <End Role="RoutineExercises" EntitySet="RoutineExercises" />
           </AssociationSet>
-          <AssociationSet Name="FK_SetsExerciseId" Association="Self.FK_SetsExerciseId">
+          <AssociationSet Name="FK_SetOnExercise" Association="MuscleApplication_dbModel.FK_SetOnExercise">
             <End Role="Exercises" EntitySet="Exercises" />
             <End Role="Sets" EntitySet="Sets" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoutineId" Association="Self.FK_RoutineId">
+          <AssociationSet Name="FK_TypeExercise" Association="MuscleApplication_dbModel.FK_TypeExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoutineExerciseOnRoutine" Association="MuscleApplication_dbModel.FK_RoutineExerciseOnRoutine">
             <End Role="Routines" EntitySet="Routines" />
             <End Role="RoutineExercises" EntitySet="RoutineExercises" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoutineUser" Association="Self.FK_RoutineUser">
+          <AssociationSet Name="FK_RoutineOnUser" Association="MuscleApplication_dbModel.FK_RoutineOnUser">
             <End Role="Users" EntitySet="Users" />
             <End Role="Routines" EntitySet="Routines" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWorkoutRoutineID" Association="Self.FK_UserWorkoutRoutineID">
+          <AssociationSet Name="FK_WorkoutOnRoutine" Association="MuscleApplication_dbModel.FK_WorkoutOnRoutine">
             <End Role="Routines" EntitySet="Routines" />
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+            <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
-          <AssociationSet Name="FK_SetsUserWorkoutId" Association="Self.FK_SetsUserWorkoutId">
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+          <AssociationSet Name="FK_SetOnWorkout" Association="MuscleApplication_dbModel.FK_SetOnWorkout">
+            <End Role="Workouts" EntitySet="Workouts" />
             <End Role="Sets" EntitySet="Sets" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWorkoutUserID" Association="Self.FK_UserWorkoutUserID">
+          <AssociationSet Name="FK_WorkoutOnUser" Association="MuscleApplication_dbModel.FK_WorkoutOnUser">
             <End Role="Users" EntitySet="Users" />
-            <End Role="UserWorkouts" EntitySet="UserWorkouts" />
+            <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Exercise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoutineExercises" Relationship="MuscleApplication_dbModel.FK_RoutineExerciseOnExercise" FromRole="Exercises" ToRole="RoutineExercises" />
+          <NavigationProperty Name="Sets" Relationship="MuscleApplication_dbModel.FK_SetOnExercise" FromRole="Exercises" ToRole="Sets" />
+          <NavigationProperty Name="ExerciseTypes" Relationship="MuscleApplication_dbModel.FK_TypeExercise" FromRole="Exercises" ToRole="ExerciseTypes" />
+        </EntityType>
+        <EntityType Name="ExerciseType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExerciseId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Exercises" Relationship="MuscleApplication_dbModel.FK_TypeExercise" FromRole="ExerciseTypes" ToRole="Exercises" />
+        </EntityType>
+        <EntityType Name="RoutineExercise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExerciseId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RoutineId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Exercises" Relationship="MuscleApplication_dbModel.FK_RoutineExerciseOnExercise" FromRole="RoutineExercises" ToRole="Exercises" />
+          <NavigationProperty Name="Routines" Relationship="MuscleApplication_dbModel.FK_RoutineExerciseOnRoutine" FromRole="RoutineExercises" ToRole="Routines" />
+        </EntityType>
+        <EntityType Name="Routine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUsed" Type="DateTime" Precision="0" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RoutineExercises" Relationship="MuscleApplication_dbModel.FK_RoutineExerciseOnRoutine" FromRole="Routines" ToRole="RoutineExercises" />
+          <NavigationProperty Name="Users" Relationship="MuscleApplication_dbModel.FK_RoutineOnUser" FromRole="Routines" ToRole="Users" />
+          <NavigationProperty Name="Workouts" Relationship="MuscleApplication_dbModel.FK_WorkoutOnRoutine" FromRole="Routines" ToRole="Workouts" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Repetitions" Type="Int16" />
+          <Property Name="Weight" Type="Int16" />
+          <Property Name="WorkoutId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExerciseId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Exercises" Relationship="MuscleApplication_dbModel.FK_SetOnExercise" FromRole="Sets" ToRole="Exercises" />
+          <NavigationProperty Name="Workouts" Relationship="MuscleApplication_dbModel.FK_SetOnWorkout" FromRole="Sets" ToRole="Workouts" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="Weight" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Routines" Relationship="MuscleApplication_dbModel.FK_RoutineOnUser" FromRole="Users" ToRole="Routines" />
+          <NavigationProperty Name="Workouts" Relationship="MuscleApplication_dbModel.FK_WorkoutOnUser" FromRole="Users" ToRole="Workouts" />
+        </EntityType>
+        <EntityType Name="Workout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RoutineId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndedAt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Routines" Relationship="MuscleApplication_dbModel.FK_WorkoutOnRoutine" FromRole="Workouts" ToRole="Routines" />
+          <NavigationProperty Name="Sets" Relationship="MuscleApplication_dbModel.FK_SetOnWorkout" FromRole="Workouts" ToRole="Sets" />
+          <NavigationProperty Name="Users" Relationship="MuscleApplication_dbModel.FK_WorkoutOnUser" FromRole="Workouts" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_RoutineExerciseOnExercise">
+          <End Type="MuscleApplication_dbModel.Exercise" Role="Exercises" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.RoutineExercise" Role="RoutineExercises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoutineExercises">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetOnExercise">
+          <End Type="MuscleApplication_dbModel.Exercise" Role="Exercises" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.Set" Role="Sets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sets">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeExercise">
+          <End Type="MuscleApplication_dbModel.Exercise" Role="Exercises" Multiplicity="0..1" />
+          <End Type="MuscleApplication_dbModel.ExerciseType" Role="ExerciseTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExerciseTypes">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoutineExerciseOnRoutine">
+          <End Type="MuscleApplication_dbModel.Routine" Role="Routines" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.RoutineExercise" Role="RoutineExercises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoutineExercises">
+              <PropertyRef Name="RoutineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoutineOnUser">
+          <End Type="MuscleApplication_dbModel.User" Role="Users" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.Routine" Role="Routines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Routines">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutOnRoutine">
+          <End Type="MuscleApplication_dbModel.Routine" Role="Routines" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.Workout" Role="Workouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workouts">
+              <PropertyRef Name="RoutineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetOnWorkout">
+          <End Type="MuscleApplication_dbModel.Workout" Role="Workouts" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.Set" Role="Sets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workouts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sets">
+              <PropertyRef Name="WorkoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutOnUser">
+          <End Type="MuscleApplication_dbModel.User" Role="Users" Multiplicity="1" />
+          <End Type="MuscleApplication_dbModel.Workout" Role="Workouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workouts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -396,71 +434,73 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MuscleApplication_dbModelStoreContainer" CdmEntityContainer="MuscleApplication_dbEntities">
           <EntitySetMapping Name="Exercises">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Exercises">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Exercise">
               <MappingFragment StoreEntitySet="Exercises">
-                <ScalarProperty Name="ExerciseType2" ColumnName="ExerciseType2" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="ExerciseName" ColumnName="ExerciseName" />
-                <ScalarProperty Name="ExerciseType" ColumnName="ExerciseType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExerciseTypes">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.ExerciseType">
+              <MappingFragment StoreEntitySet="ExerciseTypes">
+                <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoutineExercises">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.RoutineExercises">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.RoutineExercise">
               <MappingFragment StoreEntitySet="RoutineExercises">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="exerciseId" ColumnName="exerciseId" />
-                <ScalarProperty Name="routineId" ColumnName="routineId" />
+                <ScalarProperty Name="RoutineId" ColumnName="RoutineId" />
+                <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Routines">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Routines">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Routine">
               <MappingFragment StoreEntitySet="Routines">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="routineName" ColumnName="routineName" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="lastUsed" ColumnName="lastUsed" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastUsed" ColumnName="LastUsed" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sets">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Sets">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Set">
               <MappingFragment StoreEntitySet="Sets">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="repetition" ColumnName="repetition" />
-                <ScalarProperty Name="weight" ColumnName="weight" />
-                <ScalarProperty Name="userWorkoutId" ColumnName="userWorkoutId" />
-                <ScalarProperty Name="exerciseId" ColumnName="exerciseId" />
+                <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+                <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Repetitions" ColumnName="Repetitions" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Users">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="deleted" ColumnName="deleted" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="weight" ColumnName="weight" />
-                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserWorkouts">
-            <EntityTypeMapping TypeName="MuscleApplication_dbModel.UserWorkouts">
-              <MappingFragment StoreEntitySet="UserWorkouts">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
-                <ScalarProperty Name="routineId" ColumnName="routineId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="routineName" ColumnName="routineName" />
-                <ScalarProperty Name="endedAt" ColumnName="endedAt" />
+          <EntitySetMapping Name="Workouts">
+            <EntityTypeMapping TypeName="MuscleApplication_dbModel.Workout">
+              <MappingFragment StoreEntitySet="Workouts">
+                <ScalarProperty Name="EndedAt" ColumnName="EndedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoutineId" ColumnName="RoutineId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -33,7 +33,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// List of the exercises from the database
         /// </summary>
-        public List<Exercises> ExercisesFromDatabase { get; set; }
+        public List<Exercise> ExercisesFromDatabase { get; set; }
         /// <summary>
         /// What the user searched for 
         /// </summary>
@@ -96,10 +96,8 @@ namespace MuscleApplication.Desktop
                     // Creates list item 
                     var availableExercise = new AvailableExerciseListItemViewModel
                     {
-                        id = exercise.id,
-                        ExerciseName = exercise.ExerciseName,
-                        ExerciseType = exercise.ExerciseType,
-                        ExerciseType2 = exercise.ExerciseType2
+                        Id = exercise.Id,
+                        Name = exercise.Name,
                     };
                     // Adds the exercise to the list
                     ExercisesList.Add(availableExercise);
@@ -116,13 +114,11 @@ namespace MuscleApplication.Desktop
                     // Creates list item 
                     var availableExercise = new AvailableExerciseListItemViewModel
                     {
-                        id = exercise.id,
-                        ExerciseName = exercise.ExerciseName,
-                        ExerciseType = exercise.ExerciseType,
-                        ExerciseType2 = exercise.ExerciseType2
+                        Id = exercise.Id,
+                        Name = exercise.Name,
                     };
                     // Looks for the searched phrase 
-                    if (availableExercise.ExerciseName.ToUpper().Contains(searchedValue) || availableExercise.ExerciseType.ToUpper().Contains(searchedValue))
+                    if (availableExercise.Name.ToUpper().Contains(searchedValue))
                     {
                         // Adds the exercise to the list
                         ExercisesList.Add(availableExercise);
@@ -158,7 +154,7 @@ namespace MuscleApplication.Desktop
                         foreach (var selectedExercise in SelectedExercisesList.ToList())
                         {
                             // If exercise already exists in this list that means the exercise was deselected
-                            if (exercise.id == selectedExercise.id)
+                            if (exercise.Id == selectedExercise.Id)
                             {
                                 doesExist = true;
                                 SelectedExercisesList.Remove(selectedExercise);
@@ -197,21 +193,21 @@ namespace MuscleApplication.Desktop
         /// as its exercises
         /// </summary>
         /// <param name="parameter">Routine name </param>
-        private async void CreateRoutine(object parameter)
+        private void CreateRoutine(object parameter)
         {
             // Casts routine name as parameter 
             var routineName = parameter as string;
 
             // Creates new routine 
-            var newRoutine = new Routines
+            var newRoutine = new Routine
             {
-                routineName = routineName as string,
-                userId = CurrentUser.id,
+                Name = routineName as string,
+                UserId = CurrentUser.Id,
             };
             
 
             // Save routine id string for adding exercises later
-            var routineIdString = newRoutine.id;
+            var routineIdString = newRoutine.Id;
 
             // Adds new routine to the database
             db.Routines.Add(newRoutine);
@@ -221,9 +217,9 @@ namespace MuscleApplication.Desktop
             // Adds exercises selected by the user to the database
             foreach(var selectedExercise in SelectedExercisesList.ToList())
             {
-                var exercise = new RoutineExercises {
-                    routineId = routineIdString,
-                    exerciseId = selectedExercise.id
+                var exercise = new RoutineExercise {
+                    RoutineId = routineIdString,
+                    ExerciseId = selectedExercise.Id
                 };
                 
                 db.RoutineExercises.Add(exercise);

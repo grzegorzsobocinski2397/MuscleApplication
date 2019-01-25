@@ -5,19 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="361abc33fa24455bbb6518aa024c6a95" Name="Diagram1">
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.Exercises" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.RoutineExercises" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.Routines" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.Sets" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.Users" Width="1.5" PointX="0.875" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MuscleApplication_dbModel.UserWorkouts" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_ExerciseId" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetsExerciseId" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineId" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineUser" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_UserWorkoutRoutineID" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetsUserWorkoutId" ManuallyRouted="false" />
-        <AssociationConnector Association="MuscleApplication_dbModel.FK_UserWorkoutUserID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Exercise" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.ExerciseType" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.RoutineExercise" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Routine" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Set" Width="1.5" PointX="7.5" PointY="3.5" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.User" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="MuscleApplication_dbModel.Workout" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineExerciseOnExercise" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetOnExercise" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_TypeExercise" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineExerciseOnRoutine" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_RoutineOnUser" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_WorkoutOnRoutine" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_SetOnWorkout" />
+        <AssociationConnector Association="MuscleApplication_dbModel.FK_WorkoutOnUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

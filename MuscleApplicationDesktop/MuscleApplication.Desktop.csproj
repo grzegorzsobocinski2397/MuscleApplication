@@ -115,7 +115,10 @@
     <Compile Include="Animation\StoryboardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="DataModels\ApplicationPage.cs" />
-    <Compile Include="Exercises.cs">
+    <Compile Include="Exercise.cs">
+      <DependentUpon>MuscleDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExerciseType.cs">
       <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="MuscleDatabase.Context.cs">
@@ -124,9 +127,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="MuscleDatabase.cs">
-      <DependentUpon>MuscleDatabase.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="MuscleDatabase.Designer.cs">
       <DependentUpon>MuscleDatabase.edmx</DependentUpon>
@@ -149,13 +152,16 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RoutineExercises.cs">
+    <Compile Include="Routine.cs">
       <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Routines.cs">
+    <Compile Include="RoutineExercise.cs">
       <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sets.cs">
+    <Compile Include="Set.cs">
+      <DependentUpon>MuscleDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainSideBar\MainSidebarUserControl.xaml.cs">
@@ -188,12 +194,6 @@
     <Compile Include="UserControls\Workout\UserRoutine\UserRoutineListControl.xaml.cs">
       <DependentUpon>UserRoutineListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
-      <DependentUpon>MuscleDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserWorkouts.cs">
-      <DependentUpon>MuscleDatabase.tt</DependentUpon>
-    </Compile>
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
@@ -214,6 +214,9 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelLocator.cs" />
     <Compile Include="Window\WindowResizer.cs" />
+    <Compile Include="Workout.cs">
+      <DependentUpon>MuscleDatabase.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

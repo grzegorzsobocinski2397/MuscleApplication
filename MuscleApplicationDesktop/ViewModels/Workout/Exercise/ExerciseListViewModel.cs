@@ -61,7 +61,7 @@ namespace MuscleApplication.Desktop
                 if (currentRoutineId != null)
                 {
                     // Gets the routine exercises from the database
-                    var routineExercises = db.RoutineExercises.Where(re => re.routineId == currentRoutineId).ToList();
+                    var routineExercises = db.RoutineExercises.Where(re => re.Id == currentRoutineId).ToList();
                     if (routineExercises != null)
                     {
                         // Clears the ObservableCollection just in case 
@@ -70,14 +70,12 @@ namespace MuscleApplication.Desktop
                         foreach (var routineExercise in routineExercises)
                         {
                             // Searches the database for exercise that has the id of the RoutineExercise's exercise id
-                            var exerciseFromDatabase = db.Exercises.Where(e => e.id == routineExercise.exerciseId).FirstOrDefault();
+                            var exerciseFromDatabase = db.Exercises.Where(e => e.Id == routineExercise.ExerciseId).FirstOrDefault();
 
                             var exercise = new ExerciseListItemViewModel
                             {
-                                id = exerciseFromDatabase.id,
-                                ExerciseName = exerciseFromDatabase.ExerciseName,
-                                ExerciseType = exerciseFromDatabase.ExerciseType,
-                                ExerciseType2 = exerciseFromDatabase.ExerciseType2,
+                                id = exerciseFromDatabase.Id,
+                                ExerciseName = exerciseFromDatabase.Name
                             };
                             // Adds the exercise to the collection
                             ExercisesList.Add(exercise);

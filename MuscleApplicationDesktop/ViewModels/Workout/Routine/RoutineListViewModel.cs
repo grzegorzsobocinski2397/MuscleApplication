@@ -58,11 +58,10 @@ namespace MuscleApplication.Desktop
                         // Creates a new routineListItem so I can access commands 
                         var routineListItem = new RoutineListItemViewModel
                         {
-                            id = routine.id,
-                            createdAt = routine.createdAt,
-                            routineName = routine.routineName,
-                            userId = routine.userId,
-                            lastUsed = routine.lastUsed
+                            Id = routine.Id,
+                            Name = routine.Name,
+                            UserId = routine.UserId,
+                            LastUsed = routine.LastUsed
 
                         };
                         // Adds new item to the list
@@ -82,7 +81,7 @@ namespace MuscleApplication.Desktop
             {
                 foreach(var routine in RoutinesList)
                 {
-                    if(routine.id != message.NewValue)
+                    if(routine.Id != message.NewValue)
                     {
                         routine.IsSelected = false;
                     }

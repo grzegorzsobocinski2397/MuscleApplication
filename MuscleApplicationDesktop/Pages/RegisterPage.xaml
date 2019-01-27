@@ -41,13 +41,25 @@
                                 Foreground="{StaticResource ForegroundMainBrush}"
                                 Text="Start working out today!" />
                             <!--  Placeholder for email  -->
-                            <TextBox Tag="Email" Text="{Binding Email, Mode=TwoWay}" />
+                            <TextBox
+                                MaxLength="50"
+                                Tag="Email"
+                                Text="{Binding Email, Mode=TwoWay}" />
                             <!--  Placeholder for password  -->
-                            <TextBox Tag="Password" Text="{Binding Password, Mode=TwoWay}" />
+                            <TextBox
+                                MaxLength="50"
+                                Tag="Password"
+                                Text="{Binding Password, Mode=TwoWay}" />
                             <!--  Password confirmation  -->
-                            <TextBox Tag="Confirm password" Text="{Binding ConfirmPassword, Mode=TwoWay}" />
+                            <TextBox
+                                MaxLength="50"
+                                Tag="Confirm password"
+                                Text="{Binding ConfirmPassword, Mode=TwoWay}" />
                             <!--  Date of birth  -->
-                            <TextBox Tag="Date of birth (12/12/1992)" Text="{Binding DateOfBirth, Mode=TwoWay}" />
+                            <TextBox
+                                MaxLength="10"
+                                Tag="Date of birth (12/12/1992)"
+                                Text="{Binding DateOfBirth, Mode=TwoWay}" />
                             <TextBlock
                                 FontFamily="{StaticResource LatoThin}"
                                 FontSize="{StaticResource FontSizeRegular}"

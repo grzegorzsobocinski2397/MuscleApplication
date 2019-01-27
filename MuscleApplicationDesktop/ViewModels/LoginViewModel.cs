@@ -63,13 +63,11 @@ namespace MuscleApplication.Desktop
         #region Private Methods
         private async Task LoginAsync(object parameter)
         {
-            // User credentials taken from the login page
-            var email = Email;
-            var password = Password;
+           
 
-            if (email != null && password != null)
+            if (Email != null && Password != null)
             {
-                bool canLogin = LoginCredentialsCheckAsync(email, password);
+                bool canLogin = LoginCredentialsCheckAsync(Email, Password);
                 if (canLogin)
                     ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Homepage);
                 else
@@ -98,7 +96,6 @@ namespace MuscleApplication.Desktop
                 // Selects user of this application as a given user
                 if (user.Password == password)
                 {
-
                     CurrentUser = user;
                     return true;
                 }

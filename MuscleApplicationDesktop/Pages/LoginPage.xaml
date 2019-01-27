@@ -43,12 +43,12 @@
                                 Foreground="{StaticResource ForegroundMainBrush}"
                                 Text="Start working out today!" />
                             <!--  Placeholder for email  -->
-                            <TextBox Tag="Email" Text="{Binding Email}" />
+                            <TextBox Tag="Email" Text="{Binding Email, Mode=TwoWay}" />
                             <!--  Placeholder for password  -->
                             <TextBox
                                 Margin="0,0,0,30"
                                 Tag="Password"
-                                Text="{Binding Password}" />
+                                Text="{Binding Password, Mode=TwoWay}" />
                             <!--  Login Button  -->
                             <Button
                                 HorizontalAlignment="Center"

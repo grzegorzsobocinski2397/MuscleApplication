@@ -10,18 +10,63 @@
     mc:Ignorable="d">
 
     <Border
+        x:Name="mask"
         Width="300"
         Height="150"
         Background="{StaticResource ForegroundLightBrush}"
         CornerRadius="5">
 
-        <!--  Age, weight, Height and BMI information (for now hardcoded)  -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Age: 23" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Weight: 80kg" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Height: 178cm" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Your BMI is 24 which is okay :)" />
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--  Edit icon  -->
+                <RowDefinition Height="30" />
+                <!--  User information  -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Edit profile button  -->
+            <Border
+                Grid.Row="0"
+                Background="{StaticResource LightBlueForIconBackgroundBrush}"
+                CornerRadius="5">
+
+                <Grid>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource LatoRegular}"
+                        FontSize="{StaticResource FontSizeRegular}"
+                        Foreground="{StaticResource NavBarBlueBrush}"
+                        Text="User Information" />
+                    <Button
+                        Margin="0,3,3,3"
+                        HorizontalAlignment="Right"
+                        Background="{StaticResource LightBlueForIconBackgroundBrush}"
+                        Content="{StaticResource FontAwesomeEdit}"
+                        Foreground="{StaticResource ForegroundMainBrush}"
+                        Style="{StaticResource EditButton}" />
+                </Grid>
+
+            </Border>
+
+            <!--  Age, weight, Height and BMI information  -->
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="{Binding Age}" />
+                <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="{Binding Height}" />
+                <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="{Binding Weight}" />
+                <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="{Binding BMI}" />
+            </StackPanel>
+        </Grid>
+
+
 
     </Border>
+
+    <UserControl.DataContext>
+        <local:UserInformationViewModel />
+    </UserControl.DataContext>
 </UserControl>

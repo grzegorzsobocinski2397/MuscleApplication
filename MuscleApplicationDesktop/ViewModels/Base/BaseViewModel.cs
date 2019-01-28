@@ -33,7 +33,7 @@ namespace MuscleApplication.Desktop
         /// <summary>
         /// The current logged user in the application
         /// </summary>
-        public User CurrentUser { get; set; } 
+        public static User CurrentUser { get; set; } 
         /// <summary>
         /// The event that is fired when any child property changes its value
         /// </summary>

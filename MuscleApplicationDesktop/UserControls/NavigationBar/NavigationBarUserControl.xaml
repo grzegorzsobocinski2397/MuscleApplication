@@ -13,7 +13,7 @@
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
             <Border Height="60" Background="{StaticResource NavBarBlueBrush}">
-               
+
                 <!--  Icons  -->
                 <Grid>
                     <Grid.ColumnDefinitions>

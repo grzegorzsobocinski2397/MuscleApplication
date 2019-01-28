@@ -73,12 +73,14 @@
     </Style>
 
     <!--  TextBlock Statistics  -->
-    <Style x:Key="StatTextblock" TargetType="{x:Type TextBlock}">
+    <Style x:Key="StatisticsTextBlock" TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
-        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeVerySmall}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
         <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Padding" Value="5" />
+        <Setter Property="TextWrapping" Value="WrapWithOverflow" />
     </Style>
 
     <!--  Title TextBlock  -->
@@ -91,58 +93,6 @@
         <Setter Property="Margin" Value="5" />
     </Style>
 
-    <!--  Password box  -->
-    <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
-        <Setter Property="PasswordChar" Value="●" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
-        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
-        <Setter Property="BorderBrush" Value="{StaticResource WordBlueBrush}" />
-        <Setter Property="Margin" Value="0,5,0,5" />
-        <Setter Property="BorderThickness" Value="0,0,0,1" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Grid>
-                        <Border
-                            x:Name="border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="True">
-                            <ScrollViewer
-                                x:Name="PART_ContentHost"
-                                Focusable="false"
-                                HorizontalScrollBarVisibility="Hidden"
-                                VerticalScrollBarVisibility="Hidden" />
-                        </Border>
 
-                        <TextBlock
-                            x:Name="placeholder"
-                            Padding="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            VerticalAlignment="Center"
-                            FontFamily="{StaticResource LatoThin}"
-                            Foreground="{StaticResource ForegroundMainBrush}"
-                            IsHitTestVisible="False"
-                            Text="{TemplateBinding Tag}" 
-                            Visibility="{TemplateBinding local:HasTextProperty.Value, Converter={local:BooleanToVisibilityConverter}}"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="border" Property="Opacity" Value="0.56" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#FF7EB4EA" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#FF569DE5" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
 </ResourceDictionary>

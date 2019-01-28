@@ -29,4 +29,5 @@
     <system:String x:Key="FontAwesomeCalendar">&#xf073;</system:String>
     <system:String x:Key="FontAwesomeStart">&#xf04b;</system:String>
     <system:String x:Key="FontAwesomeList">&#xf022;</system:String>
+    <system:String x:Key="FontAwesomeEdit">&#xf044;</system:String>
 </ResourceDictionary>

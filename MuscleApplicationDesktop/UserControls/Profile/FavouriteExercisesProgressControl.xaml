@@ -17,10 +17,10 @@
 
         <!--  Favourite lifts (for now hardcoded)  -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Squat: 130 kg" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Bench Press: 80 kg" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Deadlift: 178 kg" />
-            <TextBlock Style="{StaticResource StatTextblock}" Text="Overhead Press: 78 kg" />
+            <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="Squat: 130 kg" />
+            <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="Bench Press: 80 kg" />
+            <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="Deadlift: 178 kg" />
+            <TextBlock Style="{StaticResource StatisticsTextBlock}" Text="Overhead Press: 78 kg" />
         </StackPanel>
 
     </Border>

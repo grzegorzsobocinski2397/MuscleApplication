@@ -18,9 +18,9 @@ namespace MuscleApplication.Desktop
     /// <summary>
     /// Interaction logic for MainSidebarUserControl.xaml
     /// </summary>
-    public partial class MainSidebarUserControl : UserControl
+    public partial class NavigationBarUserControl : UserControl
     {
-        public MainSidebarUserControl()
+        public NavigationBarUserControl()
         {
             InitializeComponent();
         }

@@ -164,8 +164,8 @@
     <Compile Include="User.cs">
       <DependentUpon>MuscleDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainSideBar\MainSidebarUserControl.xaml.cs">
-      <DependentUpon>MainSidebarUserControl.xaml</DependentUpon>
+    <Compile Include="UserControls\NavigationBar\NavigationBarUserControl.xaml.cs">
+      <DependentUpon>NavigationBarUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Profile\FavouriteExercisesProgressControl.xaml.cs">
       <DependentUpon>FavouriteExercisesProgressControl.xaml</DependentUpon>
@@ -269,7 +269,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainSideBar\MainSidebarUserControl.xaml">
+    <Page Include="UserControls\NavigationBar\NavigationBarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

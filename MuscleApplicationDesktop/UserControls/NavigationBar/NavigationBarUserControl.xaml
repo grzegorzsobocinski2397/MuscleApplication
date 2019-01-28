@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MuscleApplication.Desktop.MainSidebarUserControl"
+    x:Class="MuscleApplication.Desktop.NavigationBarUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,9 +13,7 @@
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
             <Border Height="60" Background="{StaticResource NavBarBlueBrush}">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0.2" />
-                </Border.Effect>
+               
                 <!--  Icons  -->
                 <Grid>
                     <Grid.ColumnDefinitions>

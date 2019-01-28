@@ -34,6 +34,10 @@ namespace MuscleApplication.Desktop
             get { return password; }
             set { password = value; }
         }
+        /// <summary>
+        /// True if the user makes a mistake or an account doesn't exist
+        /// </summary>
+        public bool ErrorTextVisibility { get; set; } = false;
 
         #endregion
         #region Commands
@@ -61,17 +65,23 @@ namespace MuscleApplication.Desktop
 
         #endregion
         #region Private Methods
+        /// <summary>
+        /// Checks if the user credentials match in the database
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         private async Task LoginAsync(object parameter)
         {
            
-
             if (Email != null && Password != null)
             {
+                // Checks the database
                 bool canLogin = LoginCredentialsCheckAsync(Email, Password);
+                // Change page if true
                 if (canLogin)
                     ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangePage(ApplicationPage.Homepage);
                 else
-                    MessageBox.Show("Error", "Please try again", MessageBoxButton.OK);
+                    ErrorTextVisibility = true;
 
                 await Task.Delay(10);
 
